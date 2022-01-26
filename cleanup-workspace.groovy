@@ -53,5 +53,3 @@ for (job in Jenkins.instance.items)
             manager.listener.logger.println "No Workspace associated with this job"
         }
     }
-
-}
