@@ -40,7 +40,7 @@ for (job in Jenkins.instance.items)
                 
               //   }
                  files.each{
-                     if(!it.isFile())
+                     if(it.isDirectory() == true)
                      {
                          if(count < MAX_BUILDS){
                              println "test1"
