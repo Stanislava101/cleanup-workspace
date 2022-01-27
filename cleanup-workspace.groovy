@@ -39,7 +39,7 @@ for (job in Jenkins.instance.items)
             //     a,b -> b.lastModified().compareTo a.lastModified()
                  }
             //     .each{
-            //         if(!it.isFile())
+                     if(!it.isFile())
             //         {
             //             if(count < MAX_BUILDS)
             //                 println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
@@ -49,7 +49,7 @@ for (job in Jenkins.instance.items)
             //             }
             //             count++
             //         }
-            //     }
+                 }
              }
             else
             {
