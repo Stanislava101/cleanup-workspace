@@ -42,7 +42,7 @@ for (job in Jenkins.instance.items)
                          }
                          count++
                      }
-                 }
+              //   }
              }
             else
             {
