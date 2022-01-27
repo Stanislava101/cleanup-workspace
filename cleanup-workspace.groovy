@@ -6,7 +6,7 @@ import hudson.model.*
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- Start Time" 
 
 //Get value from String Parameter
-MAX_BUILDS = manager.build.buildVariables.get("MAX_BUILDS").toInteger()
+MAX_BUILDS = 3
 @NonCPS
 def func(){
 for (job in Jenkins.instance.items) 
@@ -14,11 +14,11 @@ for (job in Jenkins.instance.items)
   
   	int count = 0
   	
-    manager.listener.logger.println "\n ***Job Name: "+job.name+"***"
+    println "\n ***Job Name: "+job.name+"***"
     
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
-            manager.listener.logger.println "Workspace path : " + job.workspace
+            println "Workspace path : " + job.workspace
             
             String workspace = job.workspace
             
@@ -36,10 +36,10 @@ for (job in Jenkins.instance.items)
                     if(!it.isFile()) //Check only for folders
                     {
                         if(count < MAX_BUILDS)
-                            manager.listener.logger.println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
+                            println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
                         else
                         {
-                            manager.listener.logger.println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
+                            println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
                         }
                         count++
                     }
@@ -47,12 +47,12 @@ for (job in Jenkins.instance.items)
             }
             else
             {
-                manager.listener.logger.println "Workspace is empty or doesn't exist"
+                println "Workspace is empty or doesn't exist"
             }
         }
         else
         {
-            manager.listener.logger.println "No Workspace associated with this job"
+            println "No Workspace associated with this job"
         }
     }
 
