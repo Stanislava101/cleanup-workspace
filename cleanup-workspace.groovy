@@ -39,7 +39,9 @@ for (job in Jenkins.instance.items)
             //     a,b -> b.lastModified().compareTo a.lastModified()
                  }
                  for(item in files){
-                     println item
+                     if(!item.isFile()){
+                         println "condition"
+                     }
                  }
             //     .each{
                   //   if(!it.isFile())
