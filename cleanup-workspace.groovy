@@ -6,6 +6,7 @@ import hudson.model.*
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- Start Time" 
 
 //Get value from String Parameter
+jenkins = Jenkins.instance
 MAX_BUILDS = 3
 
 
