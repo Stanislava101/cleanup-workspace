@@ -43,7 +43,7 @@ for (job in Jenkins.instance.items)
             //             count++
             //         }
             //     }
-            // }
+             }
             else
             {
                 println "Workspace is empty or doesn't exist"
