@@ -19,7 +19,9 @@ for (job in Jenkins.instance.items)
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
             println "Workspace path : " + job.workspace
-            
+            if(job.name =="cleanup-workspace"){
+                    continue;
+                }
             String workspace = job.workspace
             
             File folder = new File(workspace)
@@ -27,7 +29,7 @@ for (job in Jenkins.instance.items)
             if(folder!=null && folder.exists()) 
             {
                 println "test"
-                
+
             //     File[] files = new File(workspace).listFiles().sort(){
             //     a,b -> b.lastModified().compareTo a.lastModified()
             //     }
