@@ -5,7 +5,8 @@ import hudson.model.*
 
 //Get value from String Parameter
 MAX_BUILDS = 3
-
+@NonCPS
+def func(){
 for (job in Jenkins.instance.items) 
 {
   
@@ -53,3 +54,4 @@ for (job in Jenkins.instance.items)
             println "No Workspace associated with this job"
         }
     }
+}
