@@ -43,11 +43,15 @@ for (job in Jenkins.instance.items)
                      if(!it.isFile())
                      {
                          if(count < MAX_BUILDS)
+                             println "test1"
                              println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
                          else
                          {
+                             println "test2"
                              println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
+                            
                          }
+                         println "test3"
                          count++
                      }
                  }
