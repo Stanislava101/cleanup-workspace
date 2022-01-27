@@ -15,13 +15,17 @@ for (job in Jenkins.instance.items)
   	int count = 0
   	
     println "\n ***Job Name: "+job.name+"***"
+        if(job.name =="cleanup-workspace"){
+            println "testtt"
+        }
+        if(job.workspace == null){
+            println "nulll"
+        }
     
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
             println "Workspace path : " + job.workspace
-            if(job.name =="cleanup-workspace"){
-                    continue;
-                }
+
             String workspace = job.workspace
             
             File folder = new File(workspace)
