@@ -39,11 +39,9 @@ for (job in Jenkins.instance.items)
             //     a,b -> b.lastModified().compareTo a.lastModified()
                  }
                  for(item in files){
-                     if(!item.isFile()){
-                         println "condition"
-                     }
+    
                  }
-            //     .each{
+                 files.each{
                   //   if(!it.isFile())
                     // {
             //             if(count < MAX_BUILDS)
@@ -54,7 +52,7 @@ for (job in Jenkins.instance.items)
             //             }
             //             count++
             //         }
-           //      }
+                 }
              }
             else
             {
