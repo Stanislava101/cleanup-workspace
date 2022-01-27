@@ -6,7 +6,7 @@ import hudson.model.*
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- Start Time" 
 
 //Get value from String Parameter
-MAX_BUILDS = 3
+MAX_BUILDS = 2
 
 
 for (job in Jenkins.instance.items) 
@@ -52,7 +52,6 @@ for (job in Jenkins.instance.items)
                              println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
                             
                          }
-                         println "test3"
                          count++
                      }
                  }
