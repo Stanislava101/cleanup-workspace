@@ -35,8 +35,10 @@ for (job in Jenkins.instance.items)
             {
                 println "test"
 
-                 File[] files = new File(workspace)
-                 files.sort{it.lastModified()}
+                 File[] files = new File(workspace).listFiles().sort(){
+                 //a,b -> b.lastModified().compareTo a.lastModified()           error
+                
+                 }
                  files.each{
                      if(!it.isFile())
                      {
