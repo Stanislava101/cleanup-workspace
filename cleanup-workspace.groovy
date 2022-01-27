@@ -3,20 +3,21 @@ import jenkins.model.*
 import hudson.*
 import hudson.model.*
 
+//manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- Start Time" 
+
 //Get value from String Parameter
-MAX_BUILDS = 3
+MAX_BUILDS = manager.build.buildVariables.get("MAX_BUILDS").toInteger()
 @NonCPS
-def func(){
 for (job in Jenkins.instance.items) 
 {
   
   	int count = 0
   	
-    println "\n ***Job Name: "+job.name+"***"
+    manager.listener.logger.println "\n ***Job Name: "+job.name+"***"
     
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
-            println "Workspace path : " + job.workspace
+            manager.listener.logger.println "Workspace path : " + job.workspace
             
             String workspace = job.workspace
             
@@ -34,11 +35,10 @@ for (job in Jenkins.instance.items)
                     if(!it.isFile()) //Check only for folders
                     {
                         if(count < MAX_BUILDS)
-                            println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
+                            manager.listener.logger.println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
                         else
                         {
-                            println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
-                            
+                            manager.listener.logger.println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
                         }
                         count++
                     }
@@ -46,12 +46,15 @@ for (job in Jenkins.instance.items)
             }
             else
             {
-                println "Workspace is empty or doesn't exist"
+                manager.listener.logger.println "Workspace is empty or doesn't exist"
             }
         }
         else
         {
-            println "No Workspace associated with this job"
+            manager.listener.logger.println "No Workspace associated with this job"
         }
     }
+
 }
+
+//manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- End Time" 
