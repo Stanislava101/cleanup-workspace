@@ -42,9 +42,10 @@ for (job in Jenkins.instance.items)
                  files.each{
                      if(!it.isFile())
                      {
-                         if(count < MAX_BUILDS)
+                         if(count < MAX_BUILDS){
                              println "test1"
                              println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
+                         }
                          else
                          {
                              println "test2"
