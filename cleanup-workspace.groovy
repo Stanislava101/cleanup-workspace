@@ -8,6 +8,7 @@ import hudson.model.*
 //Get value from String Parameter
 MAX_BUILDS = manager.build.buildVariables.get("MAX_BUILDS").toInteger()
 @NonCPS
+def func(){
 for (job in Jenkins.instance.items) 
 {
   
@@ -56,5 +57,6 @@ for (job in Jenkins.instance.items)
     }
 
 }
+
 
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- End Time" 
