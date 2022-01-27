@@ -36,9 +36,9 @@ for (job in Jenkins.instance.items)
                 println "test"
 
                  File[] files = new File(workspace).listFiles().sort(){
-                 a,b -> b.lastModified().compareTo a.lastModified()
+            //     a,b -> b.lastModified().compareTo a.lastModified()
                  }
-            //     .each{
+                 .each{
             //         if(!it.isFile())
             //         {
             //             if(count < MAX_BUILDS)
@@ -49,7 +49,7 @@ for (job in Jenkins.instance.items)
             //             }
             //             count++
             //         }
-            //     }
+                 }
              }
             else
             {
