@@ -17,6 +17,7 @@ for (job in Jenkins.instance.items)
     println "\n ***Job Name: "+job.name+"***"
         if(job.name =="cleanup-workspace"){
             println "testtt"
+            break;
         }
         if(job.workspace == null){
             println "nulll"
