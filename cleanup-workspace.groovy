@@ -6,7 +6,6 @@ import hudson.model.*
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- Start Time" 
 
 //Get value from String Parameter
-jenkins = Jenkins.instance
 MAX_BUILDS = 3
 
 
@@ -39,9 +38,12 @@ for (job in Jenkins.instance.items)
                  File[] files = new File(workspace).listFiles().sort(){
             //     a,b -> b.lastModified().compareTo a.lastModified()
                  }
+                 for(item in files){
+                     println item
+                 }
             //     .each{
-                     if(!it.isFile())
-                     {
+                  //   if(!it.isFile())
+                    // {
             //             if(count < MAX_BUILDS)
             //                 println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
             //             else
@@ -50,7 +52,7 @@ for (job in Jenkins.instance.items)
             //             }
             //             count++
             //         }
-                 }
+           //      }
              }
             else
             {
