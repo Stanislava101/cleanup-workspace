@@ -24,27 +24,26 @@ for (job in Jenkins.instance.items)
             
             File folder = new File(workspace)
             
-            if(folder!=null && folder.exists()) //Check if the Workspace folder exists
+            if(folder!=null && folder.exists()) 
             {
-                // Get all files and folders within the Workspace of current job. 
-                //Iterate through only folders and sort em by Modified Date.
+                println "test"
                 
-                File[] files = new File(workspace).listFiles().sort(){
-                a,b -> b.lastModified().compareTo a.lastModified()
-                }
-                .each{
-                    if(!it.isFile()) //Check only for folders
-                    {
-                        if(count < MAX_BUILDS)
-                            println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
-                        else
-                        {
-                            println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
-                        }
-                        count++
-                    }
-                }
-            }
+            //     File[] files = new File(workspace).listFiles().sort(){
+            //     a,b -> b.lastModified().compareTo a.lastModified()
+            //     }
+            //     .each{
+            //         if(!it.isFile())
+            //         {
+            //             if(count < MAX_BUILDS)
+            //                 println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
+            //             else
+            //             {
+            //                 println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
+            //             }
+            //             count++
+            //         }
+            //     }
+            // }
             else
             {
                 println "Workspace is empty or doesn't exist"
