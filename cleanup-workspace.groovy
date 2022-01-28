@@ -32,6 +32,16 @@ for (job in Jenkins.instance.items)
                 list.add(workspace)
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
+        if(workplace == "validate-product-awsgc"){
+             long workspaceLength2 = job.workspace.length()
+                long fileSizeInKB = workspaceLength2/1024
+                println fileSizeInKB 
+        }
+               else if(workplace == "validate-product-aws3@2"){
+             long workspaceLength2 = job.workspace.length()
+                long fileSizeInKB = workspaceLength2/1024
+                println fileSizeInKB 
+        }
             if(!(workspace.charAt(removeSymbol) == '@')){
                 long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
@@ -88,36 +98,6 @@ for (job in Jenkins.instance.items)
         {
             println "No Workspace associated with this job"
         }
-    }
-    println "----------------------------------------------------------------------------"
-    for(item in list){
-        println item
-                   File folder = new File(item)
-          
-            if(folder!=null && folder.exists()) 
-            {
-                 File[] files = new File(item).listFiles()
-                 files.sort{
-                 a,b -> b.lastModified() <=> a.lastModified()
-                 }
-
-                 files.each{
-                        if(it.isDirectory() == true) 
-                     {      
-                         if(count1 < MAX_BUILDS){
-                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
-                         }
-                         else
-                         {
-                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
-                            
-                         }
-                         count1++
-                     }
-                 
-                 }
-             
-             }
     }
 
 
