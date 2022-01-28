@@ -46,11 +46,8 @@ for (job in Jenkins.instance.items)
                  }
 
                  files.each{
-                     if(it.isDirectory() == null){
+                     if(it.isDirectory() == ""){
                          println "directory"
-                     }
-                    else if(it.isDirectory() == false){
-                         println "dir"
                      }
                      else if(it.isDirectory() == true) 
                      {      println "in loop"
