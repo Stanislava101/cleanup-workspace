@@ -8,10 +8,10 @@ import hudson.model.*
 //Get value from String Parameter
 MAX_BUILDS = 1
 
-
+    def list =[]
+    
 for (job in Jenkins.instance.items) 
 {
-    def list =[]
   	int count = 0
   	boolean check = false
 
