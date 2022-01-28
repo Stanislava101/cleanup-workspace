@@ -72,6 +72,7 @@ for (job in Jenkins.instance.items)
              }
             }
             else
+            { if(folder!=null && folder.exists()) 
             {
              //   println "Workspace is empty or doesn't exist"
                               File[] files = new File(workspace).listFiles()
@@ -91,6 +92,7 @@ files.sort{
                             
                          }
                          count++
+            }
             }
             }
         }
