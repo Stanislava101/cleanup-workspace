@@ -38,7 +38,7 @@ for (job in Jenkins.instance.items)
              
             File folder = new File(workspace)
             
-            if(folder!=null) 
+            if(folder!=null && folder.exists()) 
             {
                 println "test"
 
@@ -46,7 +46,7 @@ for (job in Jenkins.instance.items)
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
-
+                println "check test"
                  files.each{
    
                      if(it.isDirectory() == true)
