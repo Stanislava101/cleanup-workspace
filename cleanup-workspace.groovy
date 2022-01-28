@@ -31,6 +31,7 @@ for (job in Jenkins.instance.items)
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
             if(!(workspace.charAt(removeSymbol) == '@')){
+                println workspace.length()
             println "Workspace path : " + job.workspace
             println workspace.charAt(removeSymbol)
 
@@ -74,29 +75,6 @@ for (job in Jenkins.instance.items)
              
              }else{
                  println "This is a test"
-               File[] files = new File(workspace).listFiles()
-          //       files.sort{
-          //       a,b -> b.lastModified() <=> a.lastModified()
-          //       }
-                files.each{
-                    println "loop2"
-                   check =true
-                        if(it.isDirectory() == true) 
-                     {     println "loop"
-                         if(count < MAX_BUILDS){
-                             println "test1"
-                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
-                         }
-                         else
-                         {
-                             println "test2"
-                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
-                            
-                         }
-                         count++
-                     }
-                 
-                 }
              }
             }
             else
