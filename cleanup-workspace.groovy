@@ -68,6 +68,9 @@ for (job in Jenkins.instance.items)
             if(check == true){
                          println "Item found"
                      }
+            else if(check == false){
+                println "Item not found"
+            }
              
              }
             }
