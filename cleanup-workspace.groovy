@@ -38,7 +38,7 @@ for (job in Jenkins.instance.items)
             println "Workspace path : " + job.workspace
             println workspace.charAt(removeSymbol)
             File folder
-            list.add(job.workspace)
+            list.add(workspace)
             for(item in list){
 
            // String workspace = job.workspace
