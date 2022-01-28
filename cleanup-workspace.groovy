@@ -9,10 +9,11 @@ import hudson.model.*
 MAX_BUILDS = 1
 
     def list =[]
+        int count1 =0
+
 for (job in Jenkins.instance.items) 
 {
   	int count = 0
-    int count1 =0
   	boolean check = false
 
     println "\n ***Job Name: "+job.name+"***"
