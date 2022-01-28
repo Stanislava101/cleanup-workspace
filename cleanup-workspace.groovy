@@ -47,7 +47,7 @@ for (job in Jenkins.instance.items)
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
                 println "check test"
-                if(isDirectory() == false){
+                if(folder.isDirectory() == false){
                          println "There aren't any directories"
                      }
                  files.each{
