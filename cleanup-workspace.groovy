@@ -72,7 +72,18 @@ for (job in Jenkins.instance.items)
             }
             else
             {
-                println "Workspace is empty or doesn't exist"
+             //   println "Workspace is empty or doesn't exist"
+              if(count < MAX_BUILDS){
+                             println "test1"
+                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
+                         }
+                         else
+                         {
+                             println "test2"
+                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
+                            
+                         }
+                         count++
             }
         }
         else
