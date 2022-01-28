@@ -36,18 +36,16 @@ for (job in Jenkins.instance.items)
            // String workspace = job.workspace
              
             File folder = new File(workspace)
-            folder.each{
-                println "xxx"
-                if(it.exists()){
-                         println "directory"
-                     }
-
-            }
           
             if(folder!=null && folder.exists()) 
             {
                 println("check are there folders in workspace")
                  File[] files = new File(workspace).listFiles()
+                 if(files.isDirectory){
+                     if(files.list().length>0){
+                         println "ok"
+                     }
+                 }
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
