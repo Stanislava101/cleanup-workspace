@@ -11,28 +11,27 @@ MAX_BUILDS = 1
 
 for (job in Jenkins.instance.items) 
 {
-  
+    def list =[]
   	int count = 0
   	boolean check = false
 
     println "\n ***Job Name: "+job.name+"***"
         if(job.name =="cleanup-workspace"){
-            println "testtt"
+         //   println "testtt"
             continue;
         }
         if(job.workspace == null){
-            println "nulll"
+            println "null"
         }
 
 
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
+        list.add(job.workspace)
         String workspace = job.workspace
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
             if(!(workspace.charAt(removeSymbol) == '@')){
-                println workspace
-                println "NODE_NAME = ${env.NODE_NAME}"
                 long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
@@ -77,8 +76,6 @@ for (job in Jenkins.instance.items)
                 println "Item not found"
             }
              
-             }else{
-                 println "This is a test"
              }
             }
             else
@@ -90,6 +87,9 @@ for (job in Jenkins.instance.items)
         {
             println "No Workspace associated with this job"
         }
+    }
+    for(item in list){
+        println item
     }
 
 
