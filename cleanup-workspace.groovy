@@ -40,19 +40,14 @@ for (job in Jenkins.instance.items)
             
             if(folder!=null && folder.exists()) 
             {
-                println "test"
 
                  File[] files = new File(workspace).listFiles()
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
-                println "check test"
-                // if(folder.isDirectory() == false){
-                //          println "There aren't any directories"
-                //      }
+                println "There aren't any directories"
                  files.each{
-                            println "check for folder or files"
-                     if(it.isDirectory() == true) //isDirectory
+                     if(it.isDirectory() == true) 
                      {      println "in loop"
                          if(count < MAX_BUILDS){
                              println "test1"
