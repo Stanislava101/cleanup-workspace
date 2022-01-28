@@ -38,7 +38,7 @@ for (job in Jenkins.instance.items)
             File folder = new File(workspace)
             folder.each{
                 println "xxx"
-                if(it == 0 ){
+                if(it.exists()){
                          println "directory"
                      }
 
