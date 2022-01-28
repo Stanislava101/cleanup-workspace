@@ -41,7 +41,7 @@ for (job in Jenkins.instance.items)
             {
                 println("check are there folders in workspace")
                  File[] files = new File(workspace).listFiles()
-                 if(files.list().length>0){
+                 if(files==null){
                      println "ok"
                  }
                  files.sort{
