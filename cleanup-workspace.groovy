@@ -9,7 +9,6 @@ import hudson.model.*
 MAX_BUILDS = 1
 
     def list =[]
-    
 for (job in Jenkins.instance.items) 
 {
   	int count = 0
@@ -90,7 +89,27 @@ for (job in Jenkins.instance.items)
     }
     for(item in list){
         println item
+        File folder = new File(item)
+        if(folder!=null && folder.exists()) 
+            {
+               //  File[] files = new File(item).listFiles()
+                    if(item.isDirectory() == true) 
+                     {      
+                         if(count < MAX_BUILDS){
+                             
+                             println new Date(item.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + item.name + " -- Save" 
+                         }
+                         else
+                         {
+                             
+                             println new Date(item.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + item.name + " ** Deleted" 
+                            
+                         }
+                         count++
+                     }        
     }
+    }
+
 
 
 
