@@ -75,9 +75,9 @@ for (job in Jenkins.instance.items)
              }else{
                //  println "This is a test"
                File[] files = new File(workspace).listFiles()
-                 files.sort{
-                 a,b -> b.lastModified() <=> a.lastModified()
-                 }
+          //       files.sort{
+          //       a,b -> b.lastModified() <=> a.lastModified()
+          //       }
                                   files.each{
                    check =true
                         if(it.isDirectory() == true) 
