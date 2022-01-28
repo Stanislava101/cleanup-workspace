@@ -89,7 +89,7 @@ for (job in Jenkins.instance.items)
             println "No Workspace associated with this job"
         }
     }
-
+}
 
 
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- End Time" 
