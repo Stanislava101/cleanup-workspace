@@ -40,7 +40,7 @@ for (job in Jenkins.instance.items)
             if(folder!=null && folder.exists()) 
             {
                 println("check are there folders in workspace")
-                 File[] files = new File(workspace).listFiles()
+                 File[] files = new File(workspace)
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
