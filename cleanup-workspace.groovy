@@ -24,6 +24,9 @@ for (job in Jenkins.instance.items)
         }
 
 
+            if(job.workspace == null){
+                println "There aren't any directories"
+            }
     
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
@@ -37,10 +40,6 @@ for (job in Jenkins.instance.items)
            // String workspace = job.workspace
              
             File folder = new File(workspace)
-
-            if(job.workspace == null){
-                println "There aren't any directories"
-            }
             
             if(folder!=null && folder.exists()) 
             {
