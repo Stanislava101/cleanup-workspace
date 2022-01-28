@@ -36,6 +36,13 @@ for (job in Jenkins.instance.items)
            // String workspace = job.workspace
              
             File folder = new File(workspace)
+            folder.each{
+                println "xxx"
+                if(it.isDirectory() && it.list().length==0){
+                         println "directory"
+                     }
+
+            }
           
             if(folder!=null && folder.exists()) 
             {
@@ -44,12 +51,8 @@ for (job in Jenkins.instance.items)
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
-
                  files.each{
-                     if(it.isDirectory() && it.list().length==0){
-                         println "directory"
-                     }
-                     else if(it.isDirectory() == true) 
+                     if(it.isDirectory() == true) 
                      {      println "in loop"
                          if(count < MAX_BUILDS){
                              println "test1"
