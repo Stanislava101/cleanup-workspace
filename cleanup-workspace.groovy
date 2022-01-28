@@ -13,7 +13,8 @@ for (job in Jenkins.instance.items)
 {
   
   	int count = 0
-  	
+  	boolean check = false
+
     println "\n ***Job Name: "+job.name+"***"
         if(job.name =="cleanup-workspace"){
             println "testtt"
@@ -45,7 +46,8 @@ for (job in Jenkins.instance.items)
                  }
 
                  files.each{
-                     println "Items are found"
+                   //  println "Items are found"
+                   check = true
                         if(it.isDirectory() == true) 
                      {      println "in loop"
                          if(count < MAX_BUILDS){
@@ -61,6 +63,8 @@ for (job in Jenkins.instance.items)
                          count++
                      }
                  
+                 } if(check == true){
+                     println "Item is found"
                  }
              }
             }
