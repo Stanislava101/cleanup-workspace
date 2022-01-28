@@ -6,7 +6,7 @@ import hudson.model.*
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- Start Time" 
 
 //Get value from String Parameter
-MAX_BUILDS = 4
+MAX_BUILDS = 1
 
 
 for (job in Jenkins.instance.items) 
@@ -50,7 +50,7 @@ for (job in Jenkins.instance.items)
                  files.each{
    
                      if(it.isDirectory() == true) //isDirectory
-                     {
+                     {      println "in loop"
                          if(count < MAX_BUILDS){
                              println "test1"
                              println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
