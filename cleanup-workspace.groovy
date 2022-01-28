@@ -30,6 +30,7 @@ for (job in Jenkins.instance.items)
         String workspace = job.workspace
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
+        def list =[]
             if(!(workspace.charAt(removeSymbol) == '@')){
                 long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
@@ -37,9 +38,11 @@ for (job in Jenkins.instance.items)
             println "Workspace path : " + job.workspace
             println workspace.charAt(removeSymbol)
 
+            list.add(job.workspace)
+
            // String workspace = job.workspace
              
-            File folder = new File(workspace)
+            File folder = new File(list)
           
             if(folder!=null && folder.exists()) 
             {
