@@ -12,6 +12,7 @@ MAX_BUILDS = 1
 for (job in Jenkins.instance.items) 
 {
   	int count = 0
+    int count1 =0
   	boolean check = false
 
     println "\n ***Job Name: "+job.name+"***"
@@ -92,21 +93,22 @@ for (job in Jenkins.instance.items)
         File folder = new File(item)
         if(folder!=null && folder.exists()) 
             {
-               //  File[] files = new File(item).listFiles()
-                    if(item.isDirectory() == true) 
+                File[] files = new File(item).listFiles()
+       files.each{
+                        if(it.isDirectory() == true) 
                      {      
-                         if(count < MAX_BUILDS){
-                             
-                             println new Date(item.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + item.name + " -- Save" 
+                         if(count1 < MAX_BUILDS){
+                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
                          }
                          else
                          {
-                             
-                             println new Date(item.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + item.name + " ** Deleted" 
+                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
                             
                          }
-                         count++
-                     }        
+                         count1++
+                     }
+                 
+                 }      
     }
     }
 
