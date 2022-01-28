@@ -31,7 +31,9 @@ for (job in Jenkins.instance.items)
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
             if(!(workspace.charAt(removeSymbol) == '@')){
-                println workspace.length()
+                long workspaceLength = job.workspace.length()
+                long fileSizeInKB = workspaceLength/1024
+                println fileSizeInKB 
             println "Workspace path : " + job.workspace
             println workspace.charAt(removeSymbol)
 
