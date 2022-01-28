@@ -39,7 +39,7 @@ for (job in Jenkins.instance.items)
              
             File folder = new File(workspace)
             
-            if(folder!=null) 
+            if(folder!=null || folder.exists()) 
             {
                 println "test"
 
