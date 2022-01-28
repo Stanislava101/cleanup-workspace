@@ -89,6 +89,7 @@ for (job in Jenkins.instance.items)
             println "No Workspace associated with this job"
         }
     }
+    println "----------------------------------------------------------------------------"
     for(item in list){
         println item
                    File folder = new File(item)
