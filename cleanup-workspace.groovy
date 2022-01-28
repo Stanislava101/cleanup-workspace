@@ -37,13 +37,14 @@ for (job in Jenkins.instance.items)
                 println fileSizeInKB 
             println "Workspace path : " + job.workspace
             println workspace.charAt(removeSymbol)
-
+            File folder
             list.add(job.workspace)
+            for(item in list){
 
            // String workspace = job.workspace
              
-            File folder = new File(list)
-          
+          foler = new File(item)
+            }
             if(folder!=null && folder.exists()) 
             {
                  File[] files = new File(workspace).listFiles()
