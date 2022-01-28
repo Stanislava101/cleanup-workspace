@@ -39,8 +39,8 @@ for (job in Jenkins.instance.items)
              
             File folder = new File(workspace)
             
-            if(folder!=null && folder.exists()) 
-            {
+         //   if(folder!=null && folder.exists()) 
+          //  {
                 println "test"
 
                  File[] files = new File(workspace).listFiles()
@@ -66,7 +66,7 @@ for (job in Jenkins.instance.items)
                      }
                  
                  }
-             }
+           //  }
             }
             else
             {
