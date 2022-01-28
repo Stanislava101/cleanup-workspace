@@ -41,6 +41,7 @@ for (job in Jenkins.instance.items)
                  }
 
                  files.each{
+                     if(!(it=~/.*@.*/)){
                      if(it.isDirectory() == true)
                      {
                          if(count < MAX_BUILDS){
@@ -55,6 +56,7 @@ for (job in Jenkins.instance.items)
                          }
                          count++
                      }
+                 }
                  }
              }
             else
