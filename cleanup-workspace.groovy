@@ -73,15 +73,16 @@ for (job in Jenkins.instance.items)
             }
              
              }else{
-               //  println "This is a test"
+                 println "This is a test"
                File[] files = new File(workspace).listFiles()
           //       files.sort{
           //       a,b -> b.lastModified() <=> a.lastModified()
           //       }
-                                  files.each{
+                files.each{
+                    println "loop2"
                    check =true
                         if(it.isDirectory() == true) 
-                     {     
+                     {     println "loop"
                          if(count < MAX_BUILDS){
                              println "test1"
                              println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
