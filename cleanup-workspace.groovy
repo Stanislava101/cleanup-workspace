@@ -38,7 +38,7 @@ for (job in Jenkins.instance.items)
              
             File folder = new File(workspace)
 
-            if(folder == null){
+            if(job.workspace == null){
                 println "There aren't any directories"
             }
             
