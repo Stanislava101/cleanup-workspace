@@ -49,8 +49,8 @@ for (job in Jenkins.instance.items)
                 println "check test"
                  files.each{
 
-                     if(it.isFile() == false){
-                         println "There aren't any files"
+                     if(it.isDirectory() == false){
+                         println "There aren't any directories"
                      }
    
                      if(it.isDirectory() == true) //isDirectory
