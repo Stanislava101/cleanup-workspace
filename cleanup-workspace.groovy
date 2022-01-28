@@ -15,34 +15,26 @@ for (job in Jenkins.instance.items)
 {
   	int count = 0
   	boolean check = false
-
+    if(job.name =="validate-product-awsgc@2"){
+            println "awsgc"
+        }
     println "\n ***Job Name: "+job.name+"***"
         if(job.name =="cleanup-workspace"){
          //   println "testtt"
             continue;
         }
-              if(job.name =="validate-product-awsgc@2"){
-            println "awsgc"
-        }
         if(job.workspace == null){
             println "null"
         }
-        String workspace = job.workspace
-        int workspaceLength = workspace.length()
-        int removeSymbol = workspaceLength -2
-        if(workspace.charAt(removeSymbol) == '@'){
-            println "found"
-        }
+
 
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
-      //  String workspace = job.workspace
-        // int workspaceLength = workspace.length()
-        // int removeSymbol = workspaceLength -2
-        if(workspace.charAt(removeSymbol) == '@'){
-            println "found"
-        }
-      //      if(!(workspace.charAt(removeSymbol) == '@')){
+        String workspace = job.workspace
+                list.add(workspace)
+        int workspaceLength = workspace.length()
+        int removeSymbol = workspaceLength -2
+  //          if(!(workspace.charAt(removeSymbol) == '@')){
                 long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
@@ -88,7 +80,7 @@ for (job in Jenkins.instance.items)
             }
              
              }
-       //     }
+         //   }
             else
             {
                 println "Workspace is empty or doesn't exist"
@@ -99,6 +91,7 @@ for (job in Jenkins.instance.items)
             println "No Workspace associated with this job"
         }
     }
+
 
 
 
