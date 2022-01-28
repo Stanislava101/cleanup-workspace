@@ -27,8 +27,8 @@ for (job in Jenkins.instance.items)
 
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
-        list.add(job.workspace)
         String workspace = job.workspace
+                list.add(workspace)
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
             if(!(workspace.charAt(removeSymbol) == '@')){
