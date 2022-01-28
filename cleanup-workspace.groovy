@@ -37,6 +37,10 @@ for (job in Jenkins.instance.items)
            // String workspace = job.workspace
              
             File folder = new File(workspace)
+
+            if(folder == null){
+                println "There aren't any directories"
+            }
             
             if(folder!=null && folder.exists()) 
             {
@@ -59,9 +63,7 @@ for (job in Jenkins.instance.items)
                             
                          }
                          count++
-                     }else if(it.isDirectory() == false){
-                         println "There aren't any directories"
-                     } 
+                     }
                  
                  }
              }
