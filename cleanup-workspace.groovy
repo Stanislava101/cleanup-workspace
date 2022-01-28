@@ -22,12 +22,13 @@ for (job in Jenkins.instance.items)
         if(job.workspace == null){
             println "nulll"
         }
+        String workspace = job.workspace
     
-        if(job.workspace!=null && job.workspace!="" && !(job.workspace.indexOf('@')))  //Check if there is a workspace associated with the Job
+        if(job.workspace!=null && job.workspace!="" && !(workspace.indexOf('@')))  //Check if there is a workspace associated with the Job
         {
             println "Workspace path : " + job.workspace
 
-            String workspace = job.workspace
+           // String workspace = job.workspace
             
             File folder = new File(workspace)
             
