@@ -30,12 +30,13 @@ for (job in Jenkins.instance.items)
         String workspace = job.workspace
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
-        //    if(!(workspace.charAt(removeSymbol) == '@')){
+            if(!(workspace.charAt(removeSymbol) == '@')){
+                println workspace
                 long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
             println "Workspace path : " + job.workspace
-        //    println workspace.charAt(removeSymbol)
+            println workspace.charAt(removeSymbol)
 
            // String workspace = job.workspace
              
@@ -75,10 +76,10 @@ for (job in Jenkins.instance.items)
                 println "Item not found"
             }
              
-       //      }else{
-        //         println "This is a test"
-        //     }
-     //       }
+             }else{
+                 println "This is a test"
+             }
+            }
             else
             {
                 println "Workspace is empty or doesn't exist"
@@ -89,7 +90,7 @@ for (job in Jenkins.instance.items)
             println "No Workspace associated with this job"
         }
     }
-}
+
 
 
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- End Time" 
