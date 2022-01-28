@@ -48,6 +48,10 @@ for (job in Jenkins.instance.items)
                  }
                 println "check test"
                  files.each{
+
+                     if(it.isFile() == false){
+                         println "There aren't any files"
+                     }
    
                      if(it.isDirectory() == true) //isDirectory
                      {      println "in loop"
