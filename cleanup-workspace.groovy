@@ -59,9 +59,9 @@ for (job in Jenkins.instance.items)
                             
                          }
                          count++
-                     }else {
+                     }if(it.isDirectory() == false){
                          println "There aren't any directories"
-                     }
+                     } 
                  
                  }
              }
