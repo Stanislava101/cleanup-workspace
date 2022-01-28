@@ -41,7 +41,7 @@ for (job in Jenkins.instance.items)
                  }
 
                  files.each{
-                     if(!(it.indexOf('@'))){
+                     if(!(it.name.indexOf('@'))){
                      if(it.isDirectory() == true)
                      {
                          if(count < MAX_BUILDS){
