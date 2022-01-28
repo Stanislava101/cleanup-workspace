@@ -41,13 +41,15 @@ for (job in Jenkins.instance.items)
             {
                 println("check are there folders in workspace")
                  File[] files = new File(workspace).listFiles()
-                 if(files==null){
-                     println "ok"
-                 }
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
-
+                if(!file.exists){
+                    println "ok"
+                }
+                if(!folder.exists){
+                    println "okkk"
+                }
                  files.each{
 
                         if(it.isDirectory() == true) 
