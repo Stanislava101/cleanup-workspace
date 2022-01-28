@@ -49,7 +49,10 @@ for (job in Jenkins.instance.items)
                      if(it.isDirectory == null){
                          println "directory"
                      }
-                     if(it.isDirectory() == true) 
+                    else if(it.isDirectory == false){
+                         println "dir"
+                     }
+                     else if(it.isDirectory() == true) 
                      {      println "in loop"
                          if(count < MAX_BUILDS){
                              println "test1"
