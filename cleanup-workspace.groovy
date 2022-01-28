@@ -24,7 +24,7 @@ for (job in Jenkins.instance.items)
         }
 
 
-            if(job.workspace == null){
+            if(job.workspace.length == 0){
                 println "There aren't any directories"
             }
     
