@@ -75,9 +75,9 @@ for (job in Jenkins.instance.items)
                 println "Item not found"
             }
              
-             }else{
-                 println "This is a test"
-             }
+       //      }else{
+        //         println "This is a test"
+        //     }
      //       }
             else
             {
