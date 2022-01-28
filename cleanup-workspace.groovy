@@ -44,10 +44,9 @@ for (job in Jenkins.instance.items)
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
-                 if(files==null){
-                     println "no directory"
-                 }
+
                  files.each{
+                        println "check"
                      if(it.isDirectory() == true) 
                      {      println "in loop"
                          if(count < MAX_BUILDS){
