@@ -47,11 +47,11 @@ for (job in Jenkins.instance.items)
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
                 println "check test"
-                if(folder.isDirectory() == false){
-                         println "There aren't any directories"
-                     }
+                // if(folder.isDirectory() == false){
+                //          println "There aren't any directories"
+                //      }
                  files.each{
-   
+                            println "check for folder or files"
                      if(it.isDirectory() == true) //isDirectory
                      {      println "in loop"
                          if(count < MAX_BUILDS){
