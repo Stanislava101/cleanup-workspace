@@ -90,11 +90,16 @@ for (job in Jenkins.instance.items)
     }
     for(item in list){
         println item
-        File folder = new File(item)
-        if(folder!=null && folder.exists()) 
+                   File folder = new File(item)
+          
+            if(folder!=null && folder.exists()) 
             {
-                File[] files = new File(item).listFiles()
-       files.each{
+                 File[] files = new File(item).listFiles()
+                 files.sort{
+                 a,b -> b.lastModified() <=> a.lastModified()
+                 }
+
+                 files.each{
                         if(it.isDirectory() == true) 
                      {      
                          if(count1 < MAX_BUILDS){
@@ -108,8 +113,9 @@ for (job in Jenkins.instance.items)
                          count1++
                      }
                  
-                 }      
-    }
+                 }
+             
+             }
     }
 
 
