@@ -44,10 +44,10 @@ for (job in Jenkins.instance.items)
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
-                if(!files.exists){
+                if(!files.exists()){
                     println "ok"
                 }
-                if(!folder.exists){
+                if(!folder.exists()){
                     println "okkk"
                 }
                  files.each{
