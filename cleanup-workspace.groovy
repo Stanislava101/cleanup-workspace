@@ -45,7 +45,6 @@ for (job in Jenkins.instance.items)
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
-                println "There aren't any directories"
                  files.each{
                      if(it.isDirectory() == true) 
                      {      println "in loop"
@@ -60,6 +59,8 @@ for (job in Jenkins.instance.items)
                             
                          }
                          count++
+                     }else {
+                         println "There aren't any directories"
                      }
                  
                  }
