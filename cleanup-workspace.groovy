@@ -61,11 +61,11 @@ for (job in Jenkins.instance.items)
                             
                          }
                          count++
-                     }else if(check == true){
-                         println "Item found"
                      }
                  
-                 }
+                 } if(check == true){
+                         println "Item found"
+                     }
              }
             }
             else
