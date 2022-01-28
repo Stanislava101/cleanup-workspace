@@ -47,7 +47,7 @@ for (job in Jenkins.instance.items)
 
                  files.each{
                    //  println "Items are found"
-                   check = true
+                   check =true
                         if(it.isDirectory() == true) 
                      {      println "in loop"
                          if(count < MAX_BUILDS){
@@ -61,14 +61,13 @@ for (job in Jenkins.instance.items)
                             
                          }
                          count++
+                     }if(check == true){
+                         println "Item found"
                      }
                  
-                 } 
-                 if(check == true){
-                     println "Item is found"
                  }
              }
-            //}
+            }
             else
             {
                 println "Workspace is empty or doesn't exist"
