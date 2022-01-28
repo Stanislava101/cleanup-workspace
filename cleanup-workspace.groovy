@@ -63,11 +63,12 @@ for (job in Jenkins.instance.items)
                          count++
                      }
                  
-                 } if(check == true){
+                 } 
+                 if(check == true){
                      println "Item is found"
                  }
              }
-            }
+            //}
             else
             {
                 println "Workspace is empty or doesn't exist"
