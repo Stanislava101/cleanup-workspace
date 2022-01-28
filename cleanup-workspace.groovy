@@ -63,9 +63,12 @@ for (job in Jenkins.instance.items)
                          count++
                      }
                  
-                 } if(check == true){
+                 }
+             
+             else if(check == true){
                          println "Item found"
                      }
+             
              }
             }
             else
