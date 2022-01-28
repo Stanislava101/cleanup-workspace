@@ -47,9 +47,6 @@ for (job in Jenkins.instance.items)
                 if(!files.exists()){
                     println "ok"
                 }
-                if(!folder.exists()){
-                    println "okkk"
-                }
                  files.each{
 
                         if(it.isDirectory() == true) 
