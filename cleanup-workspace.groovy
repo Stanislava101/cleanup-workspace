@@ -32,12 +32,14 @@ for (job in Jenkins.instance.items)
                 list.add(workspace)
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
-        if(workplace == "validate-product-awsgc"){
+
+        if(workspace == "validate-product-awsgc"){
              long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
         }
-               else if(workplace == "validate-product-aws3@2"){
+
+               else if(workspace == "validate-product-aws3@2"){
              long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
