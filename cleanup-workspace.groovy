@@ -15,9 +15,6 @@ for (job in Jenkins.instance.items)
 {
   	int count = 0
   	boolean check = false
-    if(job.name =="validate-product-awsgc@2"){
-            println "awsgc"
-        }
     println "\n ***Job Name: "+job.name+"***"
         if(job.name =="cleanup-workspace"){
          //   println "testtt"
@@ -92,7 +89,10 @@ for (job in Jenkins.instance.items)
         }
     }
 
-
+println "---------------------------"
+for(item in list){
+    println item
+}
 
 
 
