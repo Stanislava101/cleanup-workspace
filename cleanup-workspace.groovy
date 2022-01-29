@@ -11,7 +11,9 @@ MAX_BUILDS = 3
 for (job in Jenkins.instance.items)
 {
     SortedMap<Integer,List<String>> sprint_paths_map  = new TreeMap<Integer, List<String>>(new DescOrder());
-
+        if(job.name =="cleanup-workspace"){
+            continue;
+        }
     println "\n ***** Job Name: "+job.name+" *****"
     
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
