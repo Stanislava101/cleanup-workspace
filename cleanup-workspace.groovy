@@ -22,34 +22,25 @@ for (job in Jenkins.instance.items)
         if(job.workspace == null){
             println "nulll"
         }
-
-
     
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
-        println workspace.charAt(removeSymbol)
-        String workspace = job.workspace
-        int workspaceLength = workspace.length()
-        int removeSymbol = workspaceLength -2
-            if(!(workspace.charAt(removeSymbol) == '@')){
             println "Workspace path : " + job.workspace
-            println workspace.charAt(removeSymbol)
 
-           // String workspace = job.workspace
-             
+            String workspace = job.workspace
+            
             File folder = new File(workspace)
             
             if(folder!=null && folder.exists()) 
             {
                 println "test"
 
-                 File[] files = new File(workspace).listFiles()
-                 files.sort{
+                 File[] files = new File(workspace).listFiles().sort{
                  a,b -> b.lastModified() <=> a.lastModified()
+                
                  }
 
                  files.each{
-   
                      if(it.isDirectory() == true)
                      {
                          if(count < MAX_BUILDS){
@@ -64,10 +55,8 @@ for (job in Jenkins.instance.items)
                          }
                          count++
                      }
-                 
                  }
              }
-            }
             else
             {
                 println "Workspace is empty or doesn't exist"
