@@ -7,7 +7,7 @@ import static groovy.io.FileType.FILES
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- Start Time" 
 
 //Get value from String Parameter
-MAX_BUILDS = 1
+MAX_BUILDS = 3
 
     def list =[]
         int count1 =0
@@ -34,7 +34,7 @@ for (job in Jenkins.instance.items)
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
 
-            if(!(workspace.charAt(removeSymbol) == '@')){
+     //       if(!(workspace.charAt(removeSymbol) == '@')){
                 long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
@@ -86,7 +86,7 @@ for (job in Jenkins.instance.items)
             {
                 println "Workspace is empty or doesn't exist"
             }
-        }
+ //       }
         else
         {
             println "No Workspace associated with this job"
