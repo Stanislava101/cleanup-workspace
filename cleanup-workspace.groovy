@@ -33,23 +33,21 @@ for (job in Jenkins.instance.items)
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
 
-   //         if(!(workspace.charAt(removeSymbol) == '@')){
+            if(!(workspace.charAt(removeSymbol) == '@')){
                 long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
             println "Workspace path : " + job.workspace
             println workspace.charAt(removeSymbol)
-
-           // String workspace = job.workspace
              
             File folder = new File(workspace)
           
             if(folder!=null && folder.exists()) 
             {
                  File[] files = new File(workspace).listFiles()
-                 files.sort{
-                 a,b -> b.lastModified() <=> a.lastModified()
-                 }
+            //     files.sort{
+             //    a,b -> b.lastModified() <=> a.lastModified()
+             //    }
 
                  files.each{
                    //  println "Items are found"
@@ -79,7 +77,7 @@ for (job in Jenkins.instance.items)
             }
              
              }
-       //     }
+            }
             else
             {
                 println "Workspace is empty or doesn't exist"
