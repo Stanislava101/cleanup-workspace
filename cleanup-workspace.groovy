@@ -44,12 +44,11 @@ for (job in Jenkins.instance.items)
           
             if(folder!=null && folder.exists()) 
             {
-                 File[] files = new File(workspace).listFiles().sort{
-                     a,b ->b.lastModified().compareTo a.lastModified()
+                 File[] files = new File(workspace).listFiles()
+
+                 files.sort{
+                 a,b -> b.lastModified() <=> a.lastModified()
                  }
-            //     files.sort{
-             //    a,b -> b.lastModified() <=> a.lastModified()
-             //    }
                 
 
                  .each{
