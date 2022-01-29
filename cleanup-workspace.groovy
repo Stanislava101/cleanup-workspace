@@ -93,7 +93,7 @@ for (job in Jenkins.instance.items)
         }
     }
 
-def fileList = "ls -la /storage/jenkins/workspace/validate-product-awsgc@2".execute().text
+def fileList = "ls -la /storage/jenkins/workspace/validate-product-awsgc".execute().text
 def files =[]
 fileList.eachLine {
 files.add(it)
