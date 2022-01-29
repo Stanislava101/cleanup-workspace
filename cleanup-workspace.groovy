@@ -16,7 +16,7 @@ for (job in Jenkins.instance.items)
 {
   	int count = 0
   	boolean check = false
-    println job
+
     println "\n ***Job Name: "+job.name+"***"
         if(job.name =="cleanup-workspace"){
          //   println "testtt"
@@ -25,8 +25,7 @@ for (job in Jenkins.instance.items)
         if(job.workspace == null){
             println "null"
         }
-        println "Job workspaces"
-        println job.workspace
+
 
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
@@ -72,7 +71,7 @@ for (job in Jenkins.instance.items)
                             
                          }
                          count++
-                     }else if(it.isFile()){
+                     }else if(it.isFile() == true){
                          println "${it} ${it.size()} ${new Date(it.lastModified())}"
                      }
                  
