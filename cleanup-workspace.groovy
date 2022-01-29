@@ -16,7 +16,7 @@ for (job in Jenkins.instance.items)
   	int count = 0
   	boolean check = false
     println "\n ***Job Name: "+job.name+"***"
-                 //   list.add(job.name)
+                    list.add(job.name)
         if(job.name =="cleanup-workspace"){
          //   println "testtt"
             continue;
@@ -31,9 +31,7 @@ for (job in Jenkins.instance.items)
         String workspace = job.workspace
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
-            if(workspace.charAt(removeSymbol) == '@'){
-                    println "found @"
-            }
+  //          if(!(workspace.charAt(removeSymbol) == '@')){
                 long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
@@ -43,13 +41,13 @@ for (job in Jenkins.instance.items)
            // String workspace = job.workspace
              
             File folder = new File(workspace)
-          list.add(folder)
+          
             if(folder!=null && folder.exists()) 
-          {      
+            {
                  File[] files = new File(workspace).listFiles()
-                 files.sort{
-                 a,b -> b.lastModified() <=> a.lastModified()
-                 }
+           //      files.sort{
+           //      a,b -> b.lastModified() <=> a.lastModified()
+            //     }
 
                  files.each{
                    check =true
