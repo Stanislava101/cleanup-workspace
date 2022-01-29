@@ -95,10 +95,9 @@ for (job in Jenkins.instance.items)
 
     def list2 = []
 
-    def dir = new File("/storage/jenkins/workspace")
-    dir.eachFileRecurse(FileType.FILES){
-        file -> 
-        list2<<file
+    def dir = new File("/storage/jenkins/workspace/")
+    dir.traverse(type: FILES, maxDepth: 0) {
+        list2.add(it)
     }
     list2.each{
         println it.path
