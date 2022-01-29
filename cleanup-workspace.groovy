@@ -46,15 +46,23 @@ for (job in Jenkins.instance.items)
           
             if(folder!=null && folder.exists()) 
             {
+                
                  File[] files = new File(workspace).listFiles()
                 
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
-                
+    def fileList = "ls -la validate-product-awsgc".execute().text
+    def files =[]
+    fileList.eachLine {
+    files.add(it)
+}
+println "//////"
+for(it in files){
+    println it
+}
 
                  files.each{
-                   //  println "Items are found"
                    check =true
                         if(!it.isFile())         //isDirectory
                      {      println "in loop"
@@ -93,15 +101,15 @@ for (job in Jenkins.instance.items)
         }
     }
 
-    def list2 = []
-    def dir = new File("/storage/jenkins/workspace/validate-product-awsgc")
-    dir.eachFileRecurse(FileType.FILES) {
-        file ->
-        list2 <<file
-    }
-    list.each{
-        println it.path
-    }
+    // def list2 = []
+    // def dir = new File("/storage/jenkins/workspace/validate-product-awsgc")
+    // dir.eachFileRecurse(FileType.FILES) {
+    //     file ->
+    //     list2 <<file
+    // }
+    // list.each{
+    //     println it.path
+    // }
 
 
 // def fileList = "ls -la /storage/jenkins/workspace/".execute().text
