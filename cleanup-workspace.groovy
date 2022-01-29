@@ -41,13 +41,11 @@ for (job in Jenkins.instance.items)
             println "Workspace path : " + job.workspace
             println workspace.charAt(removeSymbol)
 
-            File folder = new File(workspace)
-              folder.eachFile{f ->
- println "${f} ${f.size()} ${new Date(f.lastModified())}"
- }
+            File folder = new File(workspace) 
           
             if(folder!=null && folder.exists()) 
             {
+                 println "${folder} ${folder.size()} ${new Date(folder.lastModified())}"
                 
                  File[] files = new File(workspace).listFiles()
                 
