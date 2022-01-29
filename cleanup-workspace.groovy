@@ -4,10 +4,8 @@ import hudson.*
 import hudson.model.*
 import groovy.io.FileType
 
-//manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- Start Time" 
-
 //Get value from String Parameter
-MAX_BUILDS = 1
+MAX_BUILDS = 5
 
     def list =[]
         int count1 =0
@@ -19,7 +17,6 @@ for (job in Jenkins.instance.items)
 
     println "\n ***Job Name: "+job.name+"***"
         if(job.name =="cleanup-workspace"){
-         //   println "testtt"
             continue;
         }
         if(job.workspace == null){
@@ -34,12 +31,12 @@ for (job in Jenkins.instance.items)
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
 
-            if(!(workspace.charAt(removeSymbol) == '@')){
+      //      if(!(workspace.charAt(removeSymbol) == '@')){
                 long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
             println "Workspace path : " + job.workspace
-            println workspace.charAt(removeSymbol)
+       //     println workspace.charAt(removeSymbol)
             File workspaceFile = new File(workspace)
 
             File folder = new File(workspace) 
@@ -50,22 +47,20 @@ for (job in Jenkins.instance.items)
                 
                  File[] files = new File(workspace).listFiles()
                 
-                 files.sort{
-                 a,b -> b.lastModified() <=> a.lastModified()
-                 }
+            //     files.sort{
+             //    a,b -> b.lastModified() <=> a.lastModified()
+             //    }
 
 
                  files.each{
                    check =true
-                        if(!it.isFile())         //isDirectory
-                     {      println "in loop"
+                        if(!it.isFile())         //isDirectory, it.isFile()
+                     {      
                          if(count < MAX_BUILDS){
-                             println "test1"
                              println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
                          }
                          else
                          {
-                             println "test2"
                              println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
                             
                          }
@@ -88,7 +83,7 @@ for (job in Jenkins.instance.items)
             {
                 println "Workspace is empty or doesn't exist"
             }
-            }
+       //     }
         }
         else
         {
@@ -107,14 +102,14 @@ for (job in Jenkins.instance.items)
     // }
 
 
-// def fileList = "ls -la /storage/jenkins/workspace/".execute().text
-// def files =[]
-// fileList.eachLine {
-// files.add(it)
-// }
-// for(it in files){
-//     println it
-// }
+def fileList = "ls -la /storage/jenkins/workspace/validate-product-awsgc".execute().text
+def files =[]
+fileList.eachLine {
+files.add(it)
+}
+for(it in files){
+    println it
+}
 
 
 // File dir = new File("/storage/jenkins/workspace")
