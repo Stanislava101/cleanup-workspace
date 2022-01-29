@@ -6,7 +6,7 @@ import hudson.model.*
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- Start Time" 
 
 //Get value from String Parameter
-MAX_BUILDS = 4
+MAX_BUILDS = 2
 
 
 for (job in Jenkins.instance.items) 
@@ -35,14 +35,12 @@ for (job in Jenkins.instance.items)
             {
                 println "test"
 
-                 File[] files = new File(workspace).listFiles()
-                 files.sort{
-                 a,b -> b.lastModified() <=> a.lastModified()
+                 File[] files = new File(workspace)
+                 //a,b -> b.lastModified().compareTo a.lastModified()           error
                 
-                 }
-
+              //   }
                  files.each{
-                     if(it.isDirectory() == true)
+                     if(!it.isFile())
                      {
                          if(count < MAX_BUILDS){
                              println "test1"
