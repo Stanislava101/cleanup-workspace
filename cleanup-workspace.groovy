@@ -79,7 +79,7 @@ for (job in Jenkins.instance.items)
                          println "Item found"
                      }
             */
-            else if(check == false){
+            if(check == false){
                 println "Workspace is empty or doesn't exist"
             }
              }
