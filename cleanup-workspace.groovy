@@ -93,11 +93,16 @@ for (job in Jenkins.instance.items)
         }
     }
 
-def fileList = "ls -la /storage/jenkins/workspace".execute().text
-def files =[]
-fileList.eachLine {
-files.add(it)
-}
-for(it in files){
-    println it.name
+// def fileList = "ls -la /storage/jenkins/workspace".execute().text
+// def files =[]
+// fileList.eachLine {
+// files.add(it)
+// }
+// for(it in files){
+//     println it
+// }
+
+File dir = new File("/storage/jenkins/workspace")
+dir.eachFile{f ->
+println "${f} ${f.size()} ${new Date(f.lastModified())}"
 }
