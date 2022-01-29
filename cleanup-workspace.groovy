@@ -98,6 +98,5 @@ def files =[]
 fileList.text.eachLine {
 files.add(it)
 }
-files.each{
-    println it
-}
+return files
+
