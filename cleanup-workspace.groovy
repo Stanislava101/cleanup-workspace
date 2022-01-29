@@ -54,7 +54,7 @@ for (job in Jenkins.instance.items)
                  files.each{
                    //  println "Items are found"
                    check =true
-                        if(it.isFile() == true) 
+                        if(!it.isFile())         //isDirectory
                      {      println "in loop"
                          if(count < MAX_BUILDS){
                              println "test1"
