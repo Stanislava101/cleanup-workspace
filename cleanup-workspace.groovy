@@ -53,12 +53,12 @@ for (job in Jenkins.instance.items)
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
     def fileList = "ls -la validate-product-awsgc".execute().text
-    def files =[]
+    def theFiles =[]
     fileList.eachLine {
-    files.add(it)
+    theFiles.add(it)
 }
 println "//////"
-for(it in files){
+for(it in theFiles){
     println it
 }
 
