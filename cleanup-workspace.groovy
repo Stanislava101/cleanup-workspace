@@ -44,15 +44,18 @@ for (job in Jenkins.instance.items)
           
             if(folder!=null && folder.exists()) 
             {
-                 File[] files = new File(workspace).listFiles()
+                 File[] files = new File(workspace).listFiles().sort{
+                     a,b ->b.lastModified().compareTo a.lastModified()
+                 }
             //     files.sort{
              //    a,b -> b.lastModified() <=> a.lastModified()
              //    }
+                
 
-                 files.each{
+                 .each{
                    //  println "Items are found"
                    check =true
-                        if(it.isDirectory() == true) 
+                        if(it.isFile() == true) 
                      {      println "in loop"
                          if(count < MAX_BUILDS){
                              println "test1"
