@@ -97,5 +97,7 @@ def fileList = "ls /storage/jenkins/workspace".execute()
 def files =[]
 fileList.text.eachLine {
 files.add(it)
-println it
+}
+files.each{
+    println it
 }
