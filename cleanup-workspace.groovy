@@ -34,7 +34,7 @@ for (job in Jenkins.instance.items)
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
 
-     //       if(!(workspace.charAt(removeSymbol) == '@')){
+       //     if(!(workspace.charAt(removeSymbol) == '@')){
                 long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
@@ -81,12 +81,12 @@ for (job in Jenkins.instance.items)
             }
              
              }
-            }
+         //   }
             else
             {
                 println "Workspace is empty or doesn't exist"
             }
- //       }
+        }
         else
         {
             println "No Workspace associated with this job"
