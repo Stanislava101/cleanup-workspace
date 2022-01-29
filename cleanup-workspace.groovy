@@ -2,6 +2,7 @@ import jenkins.*
 import jenkins.model.*
 import hudson.*
 import hudson.model.*
+import groovy.io.FileType
 
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- Start Time" 
 
@@ -41,11 +42,12 @@ for (job in Jenkins.instance.items)
             println workspace.charAt(removeSymbol)
              
             File folder = new File(workspace)
+
           
             if(folder!=null && folder.exists()) 
             {
                  File[] files = new File(workspace).listFiles()
-
+                
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
@@ -91,3 +93,13 @@ for (job in Jenkins.instance.items)
         }
     }
 
+    def list2 = []
+
+    def dir = new File("/storage/jenkins/workspace")
+    dir.eachFileRecurse(FileType.FILES){
+        file -> 
+        list2<<file
+    }
+    list2.each{
+        it.path
+    }
