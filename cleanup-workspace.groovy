@@ -16,7 +16,7 @@ for (job in Jenkins.instance.items)
   	int count = 0
   	boolean check = false
     println "\n ***Job Name: "+job.name+"***"
-                    list.add(job.name)
+                 //   list.add(job.name)
         if(job.name =="cleanup-workspace"){
          //   println "testtt"
             continue;
@@ -45,7 +45,7 @@ for (job in Jenkins.instance.items)
             File folder = new File(workspace)
           
             if(folder!=null && folder.exists()) 
-            {
+          {      list.add(folder)
                  File[] files = new File(workspace).listFiles()
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
