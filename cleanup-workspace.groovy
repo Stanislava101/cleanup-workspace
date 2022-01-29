@@ -21,26 +21,30 @@ for (job in Jenkins.instance.items)
          //   println "testtt"
             continue;
         }
-              if(job.name =="validate-product-awsgc@2"){
-            println "awsgc"
-        }
         if(job.workspace == null){
             println "null"
         }
-                String workspace = job.workspace
-        if(workspace.charAt(removeSymbol) == '@'){
-            println "found"
-        }
+
 
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
+        String workspace = job.workspace
                 list.add(workspace)
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
-        if(workspace.charAt(removeSymbol) == '@'){
-            println "found"
+
+        if(workspace == "validate-product-awsgc"){
+             long workspaceLength2 = job.workspace.length()
+                long fileSizeInKB = workspaceLength2/1024
+                println fileSizeInKB 
         }
-      //      if(!(workspace.charAt(removeSymbol) == '@')){
+
+               else if(workspace == "validate-product-aws3@2"){
+             long workspaceLength2 = job.workspace.length()
+                long fileSizeInKB = workspaceLength2/1024
+                println fileSizeInKB 
+        }
+            if(!(workspace.charAt(removeSymbol) == '@')){
                 long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
@@ -86,7 +90,7 @@ for (job in Jenkins.instance.items)
             }
              
              }
-       //     }
+            }
             else
             {
                 println "Workspace is empty or doesn't exist"
@@ -98,7 +102,3 @@ for (job in Jenkins.instance.items)
         }
     }
 
-
-
-
-//manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- End Time" 
