@@ -51,7 +51,7 @@ for (job in Jenkins.instance.items)
                  }
                 
 
-                 .each{
+                 files.each{
                    //  println "Items are found"
                    check =true
                         if(it.isFile() == true) 
