@@ -102,7 +102,13 @@ for (job in Jenkins.instance.items)
 //     println it
 // }
 
+def list2 =[]
+
 File dir = new File("/storage/jenkins/workspace")
 dir.eachFile{f ->
-println "${f} ${f.size()} ${new Date(f.lastModified())}"
+println "${f}"
+list2.add(f)
+}
+for(item in list2){
+    println item
 }
