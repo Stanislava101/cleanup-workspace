@@ -101,5 +101,5 @@ for (job in Jenkins.instance.items)
         list2<<file
     }
     list2.each{
-        it.path
+        println it.path
     }
