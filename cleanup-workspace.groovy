@@ -43,9 +43,9 @@ for (job in Jenkins.instance.items)
            // String workspace = job.workspace
              
             File folder = new File(workspace)
-          
+          list.add(folder)
             if(folder!=null && folder.exists()) 
-          {      list.add(folder)
+          {      
                  File[] files = new File(workspace).listFiles()
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
