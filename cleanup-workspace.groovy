@@ -93,12 +93,9 @@ for (job in Jenkins.instance.items)
         }
     }
 
-    def list2 = []
-
-    def dir = new File("/storage/jenkins/workspace/")
-    dir.traverse(type: FILES, maxDepth: 0) {
-        list2.add(it)
-    }
-    list2.each{
-        println it.path
-    }
+def fileList = "ls /storage/jenkins/workspace".execute()
+def files =[]
+fileList.text.eachLine {
+files.add(it)
+println it
+}
