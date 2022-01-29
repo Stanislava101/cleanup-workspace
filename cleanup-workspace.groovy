@@ -71,8 +71,10 @@ for (job in Jenkins.instance.items)
                             
                          }
                          count++
-                     }else if(it.isFile() == true){
-                         println "${it} ${it.size()} ${new Date(it.lastModified())}"
+                     }
+                     else if(it.isFile() == true){
+                       
+                         println "${it.name} ${it.size()} ${new Date(it.lastModified())}"
                      }
                  
                  }
