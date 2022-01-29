@@ -99,5 +99,5 @@ fileList.eachLine {
 files.add(it)
 }
 for(it in files){
-    println it
+    println it.name
 }
