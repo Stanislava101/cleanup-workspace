@@ -40,9 +40,11 @@ for (job in Jenkins.instance.items)
                 println fileSizeInKB 
             println "Workspace path : " + job.workspace
             println workspace.charAt(removeSymbol)
-             
-            File folder = new File(workspace)
 
+            File folder = new File(workspace)
+              folder.eachFile{f ->
+ println "${f} ${f.size()} ${new Date(f.lastModified())}"
+ }
           
             if(folder!=null && folder.exists()) 
             {
@@ -52,15 +54,7 @@ for (job in Jenkins.instance.items)
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
-    def fileList = "ls -la validate-product-awsgc".execute().text
-    def theFiles =[]
-    fileList.eachLine {
-    theFiles.add(it)
-}
-println "//////"
-for(it in theFiles){
-    println it
-}
+
 
                  files.each{
                    check =true
