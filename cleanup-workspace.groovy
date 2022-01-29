@@ -44,7 +44,7 @@ for (job in Jenkins.instance.items)
           
             if(folder!=null && folder.exists()) 
             {
-                 File[] files = new File(folder).listFiles()
+                 File[] files = new File(folder)
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
