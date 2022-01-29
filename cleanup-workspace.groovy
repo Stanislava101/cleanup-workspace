@@ -93,7 +93,7 @@ for (job in Jenkins.instance.items)
         }
     }
 
-def fileList = "ls -l /storage/jenkins/workspace".execute().text
+def fileList = "ls -la /storage/jenkins/workspace".execute().text
 def files =[]
 fileList.eachLine {
 files.add(it)
