@@ -2,7 +2,7 @@ import jenkins.*
 import jenkins.model.*
 import hudson.*
 import hudson.model.*
-import static groovy.io.FileType.FILES
+import groovy.io.FileType
 
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- Start Time" 
 
@@ -93,14 +93,25 @@ for (job in Jenkins.instance.items)
         }
     }
 
-def fileList = "ls -la /storage/jenkins/workspace/validate-product-awsgc".execute().text
-def files =[]
-fileList.eachLine {
-files.add(it)
-}
-for(it in files){
-    println it
-}
+    def list2 = []
+    def dir = new File("/storage/jenkins/workspace/validate-product-awsgc")
+    dir.eachFileRecurse(FileType.FILES) {
+        file ->
+        list2 <<file
+    }
+    list.each{
+        println it.path
+    }
+
+
+// def fileList = "ls -la /storage/jenkins/workspace/".execute().text
+// def files =[]
+// fileList.eachLine {
+// files.add(it)
+// }
+// for(it in files){
+//     println it
+// }
 
 
 // File dir = new File("/storage/jenkins/workspace")
