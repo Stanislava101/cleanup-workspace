@@ -6,7 +6,7 @@ import hudson.model.*
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- Start Time" 
 
 //Get value from String Parameter
-MAX_BUILDS = 2
+MAX_BUILDS = 4
 
 
 for (job in Jenkins.instance.items) 
@@ -22,13 +22,21 @@ for (job in Jenkins.instance.items)
         if(job.workspace == null){
             println "nulll"
         }
+
+
     
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
+        println workspace.charAt(removeSymbol)
+        String workspace = job.workspace
+        int workspaceLength = workspace.length()
+        int removeSymbol = workspaceLength -2
+            if(!(workspace.charAt(removeSymbol) == '@')){
             println "Workspace path : " + job.workspace
+            println workspace.charAt(removeSymbol)
 
-            String workspace = job.workspace
-            
+           // String workspace = job.workspace
+             
             File folder = new File(workspace)
             
             if(folder!=null && folder.exists()) 
@@ -36,11 +44,13 @@ for (job in Jenkins.instance.items)
                 println "test"
 
                  File[] files = new File(workspace).listFiles()
-                 //a,b -> b.lastModified().compareTo a.lastModified()           error
-                
-              //   }
+                 files.sort{
+                 a,b -> b.lastModified() <=> a.lastModified()
+                 }
+
                  files.each{
-                     if(!it.isFile())
+   
+                     if(it.isDirectory() == true)
                      {
                          if(count < MAX_BUILDS){
                              println "test1"
@@ -54,8 +64,10 @@ for (job in Jenkins.instance.items)
                          }
                          count++
                      }
+                 
                  }
              }
+            }
             else
             {
                 println "Workspace is empty or doesn't exist"
@@ -67,5 +79,6 @@ for (job in Jenkins.instance.items)
         }
     }
 
-//build 60
+
+
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- End Time" 
