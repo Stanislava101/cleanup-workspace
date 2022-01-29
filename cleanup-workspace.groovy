@@ -2,7 +2,7 @@ import jenkins.*
 import jenkins.model.*
 import hudson.*
 import hudson.model.*
-import groovy.io.FileType
+import static groovy.io.FileType.FILES
 
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- Start Time" 
 
