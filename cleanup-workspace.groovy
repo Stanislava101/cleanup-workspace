@@ -102,13 +102,18 @@ for (job in Jenkins.instance.items)
 //     println it
 // }
 
-def list2 =[]
 
-File dir = new File("/storage/jenkins/workspace")
-dir.eachFile{f ->
-println "${f}"
-list2.add(f)
+// File dir = new File("/storage/jenkins/workspace")
+// dir.eachFile{f ->
+// println "${f} ${f.size()} ${new Date(f.lastModified())}"
+// }
+
+dh = new File("/storage/jenkins/workspace")
+dh.eachFile{
+    println it
 }
-for(item in list2){
-    println item
+
+dh2 = new File("/storage/jenkins/workspace")
+dh2.eachFileRecurse{
+    println it
 }
