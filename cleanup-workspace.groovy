@@ -98,7 +98,6 @@ def files =[]
 fileList.eachLine {
 files.add(it)
 }
-return files
-files.each{
+for(it in files){
     println it
 }
