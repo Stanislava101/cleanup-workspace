@@ -7,7 +7,7 @@ import static groovy.io.FileType.FILES
 //manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- Start Time" 
 
 //Get value from String Parameter
-MAX_BUILDS = 3
+MAX_BUILDS = 1
 
     def list =[]
         int count1 =0
@@ -34,7 +34,7 @@ for (job in Jenkins.instance.items)
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
 
-       //     if(!(workspace.charAt(removeSymbol) == '@')){
+            if(!(workspace.charAt(removeSymbol) == '@')){
                 long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
@@ -81,7 +81,7 @@ for (job in Jenkins.instance.items)
             }
              
              }
-         //   }
+            }
             else
             {
                 println "Workspace is empty or doesn't exist"
@@ -93,14 +93,14 @@ for (job in Jenkins.instance.items)
         }
     }
 
-// def fileList = "ls -la /storage/jenkins/workspace".execute().text
-// def files =[]
-// fileList.eachLine {
-// files.add(it)
-// }
-// for(it in files){
-//     println it
-// }
+def fileList = "ls -la /storage/jenkins/workspace/validate-product-awsgc@2".execute().text
+def files =[]
+fileList.eachLine {
+files.add(it)
+}
+for(it in files){
+    println it
+}
 
 
 // File dir = new File("/storage/jenkins/workspace")
