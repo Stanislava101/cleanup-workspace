@@ -33,18 +33,7 @@ for (job in Jenkins.instance.items)
         int workspaceLength = workspace.length()
         int removeSymbol = workspaceLength -2
 
-        if(workspace == "validate-product-awsgc"){
-             long workspaceLength2 = job.workspace.length()
-                long fileSizeInKB = workspaceLength2/1024
-                println fileSizeInKB 
-        }
-
-               else if(workspace == "validate-product-aws3@2"){
-             long workspaceLength2 = job.workspace.length()
-                long fileSizeInKB = workspaceLength2/1024
-                println fileSizeInKB 
-        }
-            if(!(workspace.charAt(removeSymbol) == '@')){
+   //         if(!(workspace.charAt(removeSymbol) == '@')){
                 long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
@@ -90,7 +79,7 @@ for (job in Jenkins.instance.items)
             }
              
              }
-            }
+       //     }
             else
             {
                 println "Workspace is empty or doesn't exist"
