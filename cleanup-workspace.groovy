@@ -40,6 +40,8 @@ for (job in Jenkins.instance.items)
                 println fileSizeInKB 
             println "Workspace path : " + job.workspace
             println workspace.charAt(removeSymbol)
+            File workspaceFile = new File(workspace)
+             println "${workspaceFile} ${workspaceFile.size()} ${new Date(workspaceFile.lastModified())}"
 
             File folder = new File(workspace) 
           
