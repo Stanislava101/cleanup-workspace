@@ -39,6 +39,9 @@ for (job in Jenkins.instance.items)
                  //a,b -> b.lastModified().compareTo a.lastModified()           error
                 
               //   }
+                  files.sort{
+                 a,b -> b.lastModified() <=> a.lastModified()
+                 }
                  files.each{
                      if(!it.isFile())
                      {
