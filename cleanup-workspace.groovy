@@ -54,7 +54,7 @@ for (job in Jenkins.instance.items)
                    //  workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
                      println "The workspace is "
                      println workspace
-                     files = new File(workspace)
+                     files = new File(job.workspace)
                 }
           
             if(folder!=null && folder.exists()) 
