@@ -47,6 +47,7 @@ for (job in Jenkins.instance.items)
             int removeSymbol = folderLength -2
                             println "char"
                             println folderString.charAt(removeSymbol)
+                            println folder.getName()
 
           
             if(folder!=null && folder.exists() && folder.getName().charAt(removeSymbol) != '@' ) 
