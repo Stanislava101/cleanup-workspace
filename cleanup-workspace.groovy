@@ -49,7 +49,7 @@ for (job in Jenkins.instance.items)
                             println folderString.charAt(removeSymbol)
 
           
-            if(folder!=null && folder.exists() && folderString.charAt(removeSymbol) == '@' ) 
+            if(folder!=null && folder.exists() && folder.getName().charAt(removeSymbol) != '@' ) 
             {
                 //   long fileSizeInKB = file.length()/1024
                 //  println fileSizeInKB    
