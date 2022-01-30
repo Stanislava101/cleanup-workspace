@@ -48,10 +48,7 @@ for (job in Jenkins.instance.items)
                             println "char"
                             println folderString.charAt(removeSymbol)
                             println folder.getName()
-
-          
-            if(folder!=null && folder.exists()) 
-            {
+                            
                 if(folder.getName().charAt(removeSymbol) == '@'){
                     int length = folder.getName().length()
                     int nameLength = length - 2
@@ -59,6 +56,10 @@ for (job in Jenkins.instance.items)
                      println "The workspace is "
                      println workspace
                 }
+          
+            if(folder!=null && folder.exists()) 
+            {
+
                 //   long fileSizeInKB = file.length()/1024
                 //  println fileSizeInKB    
               //   println "${folder} ${folder.size()} ${new Date(folder.lastModified())}"
