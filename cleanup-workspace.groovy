@@ -51,7 +51,7 @@ for (job in Jenkins.instance.items)
 
                  File[] files
 
-        if(folder.getName() =="validate-build-bom"){
+        if(folder.name=="validate-build-bom"){
             continue;
         }
 
