@@ -51,6 +51,10 @@ for (job in Jenkins.instance.items)
 
                  File[] files
 
+        if(folder.getName() =="validate-build-bom"){
+            continue;
+        }
+
                 if(folder.getName().charAt(removeSymbol) == '@'){
                     int length = folder.getName().length()
                     int nameLength = length - 2
