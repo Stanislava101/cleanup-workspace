@@ -51,7 +51,7 @@ for (job in Jenkins.instance.items)
                 //   long fileSizeInKB = file.length()/1024
                 //  println fileSizeInKB    
               //   println "${folder} ${folder.size()} ${new Date(folder.lastModified())}"
-                println fileString.charAt(removeSymbol)
+                println folderString.charAt(removeSymbol)
                  File[] files = new File(workspace).listFiles()
                 
                  files.sort{
