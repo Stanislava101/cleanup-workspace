@@ -4,13 +4,8 @@ import hudson.*
 import hudson.model.*
 import groovy.io.FileType
 
-//manager.listener.logger.println new Date(System.currentTimeMillis()).format('MM/dd/yyyy hh:mm:ss a') + " / " + " -- Start Time" 
-
 //Get value from String Parameter
 MAX_BUILDS = 3
-
- //   def list =[]
-  //      int count1 =0
 
 for (job in Jenkins.instance.items) 
 {
@@ -19,6 +14,9 @@ for (job in Jenkins.instance.items)
 
     println "\n ***Job Name: "+job.name+"***"
         if(job.name =="cleanup-workspace"){
+            continue;
+        }
+        if(job.name =="validate-build-bom"){
             continue;
         }
         if(job.workspace == null){
@@ -32,7 +30,6 @@ for (job in Jenkins.instance.items)
        // int workspaceLength = workspace.length()
         //int removeSymbol = workspaceLength -2
 
-     //       if(!(workspace.charAt(removeSymbol) == '@')){
          //       long workspaceLength2 = job.workspace.length()
          //       long fileSizeInKB = workspaceLength2/1024
           //      println fileSizeInKB 
@@ -62,9 +59,6 @@ for (job in Jenkins.instance.items)
           
             if(folder!=null && folder.exists()) 
             {
-
-                //   long fileSizeInKB = file.length()/1024
-                //  println fileSizeInKB    
               //   println "${folder} ${folder.size()} ${new Date(folder.lastModified())}"
                 println folderString.charAt(removeSymbol)
                  files = new File(workspace).listFiles()
@@ -105,37 +99,10 @@ for (job in Jenkins.instance.items)
             {
                 println "Workspace is empty or doesn't exist"
             }
-         //   }
         }
         else
         {
             println "No Workspace associated with this job"
         }
     }
-
-    // def list2 = []
-    // def dir = new File("/storage/jenkins/workspace/validate-product-awsgc")
-    // dir.eachFileRecurse(FileType.FILES) {
-    //     file ->
-    //     list2 <<file
-    // }
-    // list.each{
-    //     println it.path
-    // }
-
-
-// def fileList = "ls -la /storage/jenkins/workspace/".execute().text
-// def files =[]
-// fileList.eachLine {
-// files.add(it)
-// }
-// for(it in files){
-//     println it
-// }
-
-
-// File dir = new File("/storage/jenkins/workspace")
-// dir.eachFile{f ->
-// println "${f} ${f.size()} ${new Date(f.lastModified())}"
-// }
 
