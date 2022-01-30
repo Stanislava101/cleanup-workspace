@@ -47,7 +47,7 @@ for (job in Jenkins.instance.items)
             int removeSymbol = folderLength -2
             println removeSymbol
           
-            if(folder!=null && folder.exists() && folderString.charAt(removeSymbol) == '@' ) 
+            if(folder!=null && folder.exists() && folderString.charAt(removeSymbol) != '@' ) 
             {
                    long fileSizeInKB = file.length()/1024
                   println fileSizeInKB    
