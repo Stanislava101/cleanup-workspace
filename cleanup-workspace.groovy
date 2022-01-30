@@ -48,13 +48,16 @@ for (job in Jenkins.instance.items)
                             println "char"
                             println folderString.charAt(removeSymbol)
                             println folder.getName()
-                            
+
+                 File[] files
+
                 if(folder.getName().charAt(removeSymbol) == '@'){
                     int length = folder.getName().length()
                     int nameLength = length - 2
                      workspace = folder.getName().substring(0,nameLength)
                      println "The workspace is "
                      println workspace
+                     files = new File(workspace)
                 }
           
             if(folder!=null && folder.exists()) 
@@ -64,7 +67,7 @@ for (job in Jenkins.instance.items)
                 //  println fileSizeInKB    
               //   println "${folder} ${folder.size()} ${new Date(folder.lastModified())}"
                 println folderString.charAt(removeSymbol)
-                 File[] files = new File(workspace).listFiles()
+                 files = new File(workspace).listFiles()
                 
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
