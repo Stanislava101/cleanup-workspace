@@ -42,9 +42,15 @@ for (job in Jenkins.instance.items)
 
             File folder = new File(workspace) 
             println folder
+             String folderString = folder
+             int folderLength = folderString.length()
+            int removeSymbol = folderLength -2
+            println removeSymbol
           
-            if(folder!=null && folder.exists()) 
+            if(folder!=null && folder.exists() && folderString.charAt(removeSymbol) == '@' ) 
             {
+                   long fileSizeInKB = file.length()/1024
+                  println fileSizeInKB    
               //   println "${folder} ${folder.size()} ${new Date(folder.lastModified())}"
                 
                  File[] files = new File(workspace).listFiles()
