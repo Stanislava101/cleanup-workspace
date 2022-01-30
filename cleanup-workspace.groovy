@@ -42,7 +42,7 @@ for (job in Jenkins.instance.items)
 
             File folder = new File(workspace) 
             println folder
-             String folderString = folder.getParentFile().getName()
+             String folderString = folder.getName()
              int folderLength = folderString.length()
             int removeSymbol = folderLength -2
           
