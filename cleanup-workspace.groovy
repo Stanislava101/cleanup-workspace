@@ -54,7 +54,7 @@ for (job in Jenkins.instance.items)
                 if(folder.getName().charAt(removeSymbol) == '@'){
                     int length = folder.getName().length()
                     int nameLength = length - 2
-                     workspace = folder.getName().substring(0,nameLength)
+                     workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
                      println "The workspace is "
                      println workspace
                      files = new File(workspace)
