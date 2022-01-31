@@ -5,7 +5,7 @@ import hudson.model.*
 import groovy.io.FileType
 
 //Get value from String Parameter
-MAX_BUILDS = 3
+MAX_BUILDS = 6
 
 for (job in Jenkins.instance.items) 
 {
@@ -49,6 +49,7 @@ for (job in Jenkins.instance.items)
                  File[] files
 
                 if(folder.getName().charAt(removeSymbol) == '@'){
+                    println "remove @"
                     int length = folder.getName().length()
                     int nameLength = length - 2
                      workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
