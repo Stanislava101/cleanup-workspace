@@ -57,8 +57,11 @@ for (job in Jenkins.instance.items)
                     //     files = new File(dirs).listFiles()
 
                      }
-                     files = new File(workspace).listFiles()
+                   //  files = new File(workspace).listFiles()
                      println "${workspace} ${workspace.size()}"
+                     for(file in files){
+                         println "file is " + file
+                     }
 
                      println "with @"
                 long workspaceLength2 = job.workspace.length()
@@ -70,7 +73,7 @@ for (job in Jenkins.instance.items)
                 //  a,b -> b.lastModified() <=> a.lastModified()
                 //  }
                 files.each{
-                    println it
+                    println "Path is " + it
                 }
 
 
