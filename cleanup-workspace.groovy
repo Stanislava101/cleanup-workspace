@@ -5,7 +5,7 @@ import hudson.model.*
 import groovy.io.FileType
 
 //Get value from String Parameter
-MAX_BUILDS = 6
+MAX_BUILDS = 3
 
 for (job in Jenkins.instance.items) 
 {
