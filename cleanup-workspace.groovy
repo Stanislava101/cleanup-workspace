@@ -39,10 +39,9 @@ for (job in Jenkins.instance.items)
                      workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
                      println "The workspace is "
                      println workspace
-                     if(workspace == "/storage/jenkins/workspace/validate-product-aws2"){
-                         println "aws2 found"
-                         String dirs = workspace+"/39075"
-                         files = new File(dirs).listFiles()
+                     if(workspace == "/storage/jenkins/workspace/validate-product-aws3"){
+                         println "aws3 found"
+                         files = new File("/39075").listFiles()
 
                      }
                    //  files = new File(workspace).listFiles()
