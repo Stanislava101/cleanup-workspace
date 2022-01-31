@@ -28,6 +28,9 @@ for (job in Jenkins.instance.items)
         if(job.name == "validate-dashboards"){
             continue;
         }
+        if(job.name == "validate-concourse-pipeline"){
+            continue;
+        }
         if(job.workspace == null){
             println "null"
         }
