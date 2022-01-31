@@ -20,7 +20,7 @@ for (job in Jenkins.instance.items)
             continue;
         }
         if(job.name =="validate-iac-descriptors"){
-            MAX_BUILDS = 5
+            MAX_BUILDS = 4
         }
         if(job.workspace == null){
             println "null"
