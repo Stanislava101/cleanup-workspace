@@ -20,10 +20,13 @@ for (job in Jenkins.instance.items)
             continue;
         }
         if(job.name =="validate-iac-descriptors"){
-            MAX_BUILDS = 7
+            MAX_BUILDS = 2
         }
         if(job.name == "validate-product-ac2"){
-            MAX_BUILDS = 7
+            MAX_BUILDS = 5
+        }
+        if(job.name == "validate-dashboards"){
+            continue;
         }
         if(job.workspace == null){
             println "null"
