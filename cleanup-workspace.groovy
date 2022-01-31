@@ -66,7 +66,7 @@ for (job in Jenkins.instance.items)
                      workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
                      println "The workspace is "
                      println workspace
-                     files = new File("/storage/jenkins/workspace/validate-product-aws@2")
+                     files = new File("/storage/jenkins/workspace/validate-product-aws")
                      
                                       files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
