@@ -71,7 +71,7 @@ for (job in Jenkins.instance.items)
                          println "testtt"
                        //   newF.add("/50244")
                        //   newF.add("/50249")
-                       files = new File("/50244").listFiles()
+                       files = new File("/storage/jenkins/workspace/validate-product-azure").listFiles()
                      }
                      
                      
