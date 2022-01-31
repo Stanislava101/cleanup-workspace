@@ -19,9 +19,6 @@ for (job in Jenkins.instance.items)
         if(job.name =="validate-build-bom"){
             continue;
         }
-        if(job.name == "validate-product-ac2"){
-            MAX_BUILDS = 6
-        }
         if(job.workspace == null){
             println "null"
         }
