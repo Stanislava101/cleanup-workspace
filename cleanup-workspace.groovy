@@ -25,9 +25,9 @@ for (job in Jenkins.instance.items)
         if(job.name == "validate-product-ac2"){
             MAX_BUILDS = 5
         }
-        if(job.name == "validate-dashboards"){
-            MAX_BUILDS = 2
-        }
+        // if(job.name == "validate-dashboards"){
+        //     MAX_BUILDS = 2
+        // }
         if(job.name == "validate-concourse-pipeline"){
             MAX_BUILDS = 5
         }
