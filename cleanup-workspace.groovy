@@ -66,41 +66,42 @@ for (job in Jenkins.instance.items)
                      println "The workspace is "
                      println workspace
                  //    files = new File(workspace).listFiles()
-                     def newF = []
+                   //  def newF = []
                      if(workspace =="/storage/jenkins/workspace/validate-product-azure"){
                          println "testtt"
-                          newF.add("/50244")
-                          newF.add("/50249")
+                       //   newF.add("/50244")
+                       //   newF.add("/50249")
+                       files = new File(workspace).listFiles()
                      }
                      
                      
-                //                       files.sort{
-                //  a,b -> b.lastModified() <=> a.lastModified()
-                //  }
-                newF.each{
-                    println "Line iss" +it
-                }
+                                       files.sort{
+                  a,b -> b.lastModified() <=> a.lastModified()
+                  }
+              //  newF.each{
+               //     println "Line iss" +it
+                //}
                 // files.each{
                 //     println "Line is " + it
                 // }
                 println "test"
-                //  files.each{
-                //    check =true
-                //         if(!it.isFile())         //isDirectory, it.isFile()
-                //      {      
-                //          if(count < MAX_BUILDS){
-                //              println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
-                //          }
-                //          else
-                //          {
-                //              println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
+                 files.each{
+                   check =true
+                        if(!it.isFile())         //isDirectory, it.isFile()
+                     {      
+                         if(count < MAX_BUILDS){
+                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
+                         }
+                         else
+                         {
+                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
                             
-                //          }
-                //          count++
-                //      }
+                         }
+                         count++
+                     }
                      
                  
-                //  }
+                 }
              }
           
             if(folder!=null && folder.exists()) 
