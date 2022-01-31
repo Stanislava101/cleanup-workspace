@@ -19,6 +19,9 @@ for (job in Jenkins.instance.items)
         if(job.name =="validate-build-bom"){
             continue;
         }
+        if(job.name =="validate-iac-descriptors"){
+            MAX_BUILDS = 9
+        }
         if(job.workspace == null){
             println "null"
         }
