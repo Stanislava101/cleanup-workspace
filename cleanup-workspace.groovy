@@ -64,9 +64,10 @@ for (job in Jenkins.instance.items)
                     int length = folder.getName().length()
                     int nameLength = length - 2
                      workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
+                     workspace2 = folder.getName().substring(0,nameLength)
                      println "The workspace is "
-                     println workspace
-                     files = new File(workspace).listFiles()
+                     println workspace2
+                     files = new File(workspace2).listFiles()
                      
                 //                       files.sort{
                 //  a,b -> b.lastModified() <=> a.lastModified()
