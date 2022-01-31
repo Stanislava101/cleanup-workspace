@@ -62,13 +62,7 @@ for (job in Jenkins.instance.items)
                      println "The workspace is "
                      println workspace
                      files = new File(workspace)
-              //  }
-                 if(folder!=null && folder.exists()) 
-            {
-              //   println "${folder} ${folder.size()} ${new Date(folder.lastModified())}"
-                println folderString.charAt(removeSymbol)
-                 files = new File(workspace).listFiles()
-                
+                                     
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
@@ -99,7 +93,7 @@ for (job in Jenkins.instance.items)
             if(check == false){
                 println "Workspace is empty or doesn't exist"
             }
-             }
+                }
           
             if(folder!=null && folder.exists()) 
             {
@@ -143,7 +137,6 @@ for (job in Jenkins.instance.items)
             {
                 println "Workspace is empty or doesn't exist"
             }
-        }
         }
         else
         {
