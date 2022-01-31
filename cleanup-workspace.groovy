@@ -44,7 +44,7 @@ for (job in Jenkins.instance.items)
                      println workspace
                      if(workspace == "/storage/jenkins/workspace/validate-product-aws3"){
                          println "aws3 found"
-                         String dirs = workspace+"/39077"
+                         String dirs = workspace+"/39074"
                          files = new File(dirs)
                      }
                      files = new File(workspace).listFiles()
