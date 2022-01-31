@@ -43,8 +43,8 @@ for (job in Jenkins.instance.items)
                      println "The workspace is "
                      println workspace
                      files = new File(workspace).listFiles()
-                     println "${workspace} ${workspace.size()} ${new Date(workspace.lastModified())}"
-                     println "${folder} ${folder.size()} ${new Date(folder.lastModified())}"
+                     println "${workspace} ${workspace.size()}"
+                     println "${folder} ${folder.size()}"
 
                      println "with @"
                 long workspaceLength2 = job.workspace.length()
