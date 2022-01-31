@@ -16,19 +16,6 @@ for (job in Jenkins.instance.items)
         if(job.name =="cleanup-workspace"){
             continue;
         }
-        if(job.name =="validate-build-bom"){
-            continue;
-        }
-        if(job.name =="validate-iac-descriptors"){
-            MAX_BUILDS = 11
-        }
-        if(job.name == "validate-product-ac2"){
-            MAX_BUILDS = 1
-        }
-
-        if(job.name == "validate-concourse-pipeline"){
-            MAX_BUILDS = 11
-        }
 
         if(job.workspace == null){
             println "null"
