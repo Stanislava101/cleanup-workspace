@@ -16,11 +16,11 @@ for (job in Jenkins.instance.items)
         if(job.name =="cleanup-workspace"){
             continue;
         }
-        if(job.name =="validate-build-bom"){
+        if(job.name =="validate-build-bom")
             continue;
         }
         if(job.name =="validate-iac-descriptors"){
-            MAX_BUILDS = 9
+            MAX_BUILDS = 4
         }
         if(job.workspace == null){
             println "null"
