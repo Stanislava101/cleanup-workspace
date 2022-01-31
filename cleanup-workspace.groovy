@@ -34,7 +34,7 @@ for (job in Jenkins.instance.items)
                             println folder.getName()
 
                  File[] files
-
+                
                 if(folder.getName().charAt(removeSymbol) == '@'){
                     println "remove @"
                     int length = folder.getName().length()
@@ -42,22 +42,21 @@ for (job in Jenkins.instance.items)
                      workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
                      println "The workspace is "
                      println workspace
-                     files = new File(workspace).listFiles()
+                     files = new File(workspace+"/49738").listFiles()
                      println "${workspace} ${workspace.size()}"
-                     println "${folder} ${folder.size()}"
 
                      println "with @"
                 long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
                          
-                long folderLength2 = folder.length()
-                long folderSizeInKB = folderLength2/1024
-                println folderSizeInKB 
 
                 //                       files.sort{
                 //  a,b -> b.lastModified() <=> a.lastModified()
                 //  }
+                files.each{
+                    println it
+                }
 
 
                  files.each{
