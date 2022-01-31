@@ -23,7 +23,7 @@ for (job in Jenkins.instance.items)
             MAX_BUILDS = 5
         }
         if(job.name == "validate-product-ac2"){
-            MAX_BUILDS = 6
+            MAX_BUILDS = 2
         }
         if(job.workspace == null){
             println "null"
