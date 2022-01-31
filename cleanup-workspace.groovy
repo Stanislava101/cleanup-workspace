@@ -20,13 +20,10 @@ for (job in Jenkins.instance.items)
             continue;
         }
         if(job.name =="validate-iac-descriptors"){
-            MAX_BUILDS = 6
+            MAX_BUILDS = 7
         }
         if(job.name == "validate-product-ac2"){
-            MAX_BUILDS = 4
-        }
-        if(job.name == "validate-concourse-pipeline"){
-            continue;
+            MAX_BUILDS = 7
         }
         if(job.workspace == null){
             println "null"
@@ -65,37 +62,6 @@ for (job in Jenkins.instance.items)
                      println "The workspace is "
                      println workspace
                      files = new File(workspace)
-                                     
-                 files.sort{
-                 a,b -> b.lastModified() <=> a.lastModified()
-                 }
-
-
-                 files.each{
-                   check =true
-                        if(!it.isFile())         //isDirectory, it.isFile()
-                     {      
-                         if(count < MAX_BUILDS){
-                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
-                         }
-                         else
-                         {
-                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
-                            
-                         }
-                         count++
-                     }
-                     
-                 
-                 }
-             
-          /*  if(check == true){
-                         println "Item found"
-                     }
-            */
-            if(check == false){
-                println "Workspace is empty or doesn't exist"
-            }
                 }
           
             if(folder!=null && folder.exists()) 
