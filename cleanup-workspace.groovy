@@ -4,7 +4,6 @@ import hudson.*
 import hudson.model.*
 import groovy.io.FileType
 
-//Get value from String Parameter
 MAX_BUILDS = 3
 
 for (job in Jenkins.instance.items) 
@@ -17,23 +16,14 @@ for (job in Jenkins.instance.items)
             continue;
         }
 
-        if(job.workspace == null){
-            println "null"
-        }
-
-
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
         String workspace = job.workspace
-       // int workspaceLength = workspace.length()
-        //int removeSymbol = workspaceLength -2
 
          //       long workspaceLength2 = job.workspace.length()
          //       long fileSizeInKB = workspaceLength2/1024
           //      println fileSizeInKB 
             println "Workspace path : " + job.workspace
-       //     println workspace.charAt(removeSymbol)
-         //   File workspaceFile = new File(workspace)
 
             File folder = new File(workspace) 
             println folder
@@ -53,7 +43,18 @@ for (job in Jenkins.instance.items)
                      println "The workspace is "
                      println workspace
                      files = new File(workspace).listFiles()
+                     println "${workspace} ${workspace.size()} ${new Date(workspace.lastModified())}"
+                     println "${folder} ${folder.size()} ${new Date(folder.lastModified())}"
+
                      
+                long workspaceLength2 = job.workspace.length()
+                long fileSizeInKB = workspaceLength2/1024
+                println fileSizeInKB 
+                         
+                long folderLength = folder.length()
+                long folderSizeInKB = folderLength/1024
+                println folderSizeInKB 
+
                 //                       files.sort{
                 //  a,b -> b.lastModified() <=> a.lastModified()
                 //  }
@@ -80,7 +81,6 @@ for (job in Jenkins.instance.items)
           
             if(folder!=null && folder.exists()) 
             {
-              //   println "${folder} ${folder.size()} ${new Date(folder.lastModified())}"
                  files = new File(workspace).listFiles()
                 
                  files.sort{
