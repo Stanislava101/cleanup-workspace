@@ -42,7 +42,10 @@ for (job in Jenkins.instance.items)
                      workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
                      println "The workspace is "
                      println workspace
-                     files = new File(workspace+"/49738").listFiles()
+                     if(workspace == "validate-product-aws3"){
+                         files = new File(workspace+"/39077")
+                     }
+                     files = new File(workspace).listFiles()
                      println "${workspace} ${workspace.size()}"
 
                      println "with @"
