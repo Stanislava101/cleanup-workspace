@@ -82,12 +82,12 @@ for (job in Jenkins.instance.items)
             if(folder!=null && folder.exists()) 
             {
                  files = new File(workspace).listFiles()
-                
+                                println ("without @")
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
 
-                println ("without @")
+                println ("process 2 without @")
                  files.each{
                    check =true
                         if(!it.isFile())         //isDirectory, it.isFile()
