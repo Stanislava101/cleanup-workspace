@@ -16,7 +16,7 @@ for (job in Jenkins.instance.items)
         if(job.name =="cleanup-workspace"){
             continue;
         }
-        if(job.name =="validate-build-bom")
+        if(job.name =="validate-build-bom"){
             continue;
         }
         if(job.name =="validate-iac-descriptors"){
