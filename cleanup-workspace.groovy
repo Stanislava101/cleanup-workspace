@@ -40,7 +40,6 @@ for (job in Jenkins.instance.items)
              String folderString = folder.getName()
              int folderLength = folderString.length()
             int removeSymbol = folderLength -2
-                            println "char"
                             println folderString.charAt(removeSymbol)
                             println folder.getName()
 
@@ -82,7 +81,6 @@ for (job in Jenkins.instance.items)
             if(folder!=null && folder.exists()) 
             {
               //   println "${folder} ${folder.size()} ${new Date(folder.lastModified())}"
-                println folderString.charAt(removeSymbol)
                  files = new File(workspace).listFiles()
                 
                  files.sort{
