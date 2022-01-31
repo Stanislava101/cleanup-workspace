@@ -66,13 +66,13 @@ for (job in Jenkins.instance.items)
                      workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
                      println "The workspace is "
                      println workspace
-                     files = new File("/storage/jenkins/workspace/validate-product-aws")
+                     files = new File(workspace).listFiles()
                      
                                       files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
 
-
+                println "test"
                  files.each{
                    check =true
                         if(!it.isFile())         //isDirectory, it.isFile()
