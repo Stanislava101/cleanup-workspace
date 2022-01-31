@@ -40,7 +40,7 @@ for (job in Jenkins.instance.items)
                      println "The workspace is "
                      println workspace
                      if(workspace == "/storage/jenkins/workspace/validate-product-aws2"){
-                         println "aws3 found"
+                         println "aws2 found"
                          String dirs = workspace+"/39075"
                          files = new File(dirs).listFiles()
 
@@ -92,7 +92,6 @@ for (job in Jenkins.instance.items)
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
 
-                println ("process 2 without @")
                  files.each{
                    check =true
                         if(!it.isFile())         //isDirectory, it.isFile()
