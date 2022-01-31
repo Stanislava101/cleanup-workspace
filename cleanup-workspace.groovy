@@ -26,7 +26,7 @@ for (job in Jenkins.instance.items)
             MAX_BUILDS = 2
         }
         if(job.name == "validate-concourse-pipeline"){
-            MAX_BUILDS = 4
+            continue;
         }
         if(job.workspace == null){
             println "null"
