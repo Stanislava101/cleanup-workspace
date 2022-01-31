@@ -53,7 +53,6 @@ for (job in Jenkins.instance.items)
              String folderString = folder.getName()
              int folderLength = folderString.length()
             int removeSymbol = folderLength -2
-                            println "char"
                             println folderString.charAt(removeSymbol)
                             println folder.getName()
 
@@ -66,15 +65,11 @@ for (job in Jenkins.instance.items)
                      workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
                      println "The workspace is "
                      println workspace
-                                          def lines =[]
                      files = new File(workspace).listFiles()
-                     files.eachLine{
-                         line ->
-                         lines<<line
+                     if(workspace =="/storage/jenkins/workspace/validate-iac-descriptors"){
+                         files = new File("/49675")
                      }
-                     lines.each{
-                         println it
-                     }
+                     
                      
                 //                       files.sort{
                 //  a,b -> b.lastModified() <=> a.lastModified()
@@ -105,7 +100,7 @@ for (job in Jenkins.instance.items)
             if(folder!=null && folder.exists()) 
             {
               //   println "${folder} ${folder.size()} ${new Date(folder.lastModified())}"
-                println folderString.charAt(removeSymbol)
+           //     println folderString.charAt(removeSymbol)
                  files = new File(workspace).listFiles()
                 
                  files.sort{
