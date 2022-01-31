@@ -51,8 +51,8 @@ for (job in Jenkins.instance.items)
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
                          
-                long folderLength = folder.length()
-                long folderSizeInKB = folderLength/1024
+                long folderLength2 = folder.length()
+                long folderSizeInKB = folderLength2/1024
                 println folderSizeInKB 
 
                 //                       files.sort{
