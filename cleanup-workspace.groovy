@@ -23,7 +23,7 @@ for (job in Jenkins.instance.items)
             MAX_BUILDS = 11
         }
         if(job.name == "validate-product-ac2"){
-            MAX_BUILDS = 2
+            MAX_BUILDS = 1
         }
         // if(job.name == "validate-dashboards"){
         //     MAX_BUILDS = 2
