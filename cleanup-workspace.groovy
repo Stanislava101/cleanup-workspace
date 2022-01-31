@@ -43,7 +43,9 @@ for (job in Jenkins.instance.items)
                      println "The workspace is "
                      println workspace
                      if(workspace == "validate-product-aws3"){
-                         files = new File(workspace+"/39077")
+                         println "aws3 found"
+                         String dirs = workspace+"/39077"
+                         files = new File(dirs)
                      }
                      files = new File(workspace).listFiles()
                      println "${workspace} ${workspace.size()}"
