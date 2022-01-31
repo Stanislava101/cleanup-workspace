@@ -39,10 +39,10 @@ for (job in Jenkins.instance.items)
                     println "remove @"
                     int length = folder.getName().length()
                     int nameLength = length - 2
-                  //   workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
+                     workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
                      println "The workspace is "
                      println workspace
-                     if(workspace == "/storage/jenkins/workspace/validate-product-aws2@2"){
+                     if(workspace == "/storage/jenkins/workspace/validate-product-aws2"){
                          println "aws3 found"
                          String dirs = workspace+"/50266"
                          files = new File(dirs)
