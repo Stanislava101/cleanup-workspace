@@ -47,9 +47,11 @@ for (job in Jenkins.instance.items)
                          String dirs = workspace+"/39075"
                          String dirs2 = workspace+"/39076"
                          String dirs3 = workspace+"/39078"
-                         files = new File(dirs).listFiles()
-                         files = new File(dirs2).listFiles()
-                         files = new File(dirs3).listFiles()
+                         def list = []
+                         list.add(dirs)
+                         list.add(dirs2)
+                         list.add(dirs3)
+                         files = new File(list).listFiles()
 
                      }
                      files = new File(workspace).listFiles()
