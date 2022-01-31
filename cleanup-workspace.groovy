@@ -25,15 +25,11 @@ for (job in Jenkins.instance.items)
         if(job.name == "validate-product-ac2"){
             MAX_BUILDS = 1
         }
-        // if(job.name == "validate-dashboards"){
-        //     MAX_BUILDS = 2
-        // }
+
         if(job.name == "validate-concourse-pipeline"){
             MAX_BUILDS = 11
         }
-        if(job.name == "validate-product-aws"){
-            MAX_BUILDS = 4
-        }
+
         if(job.workspace == null){
             println "null"
         }
@@ -50,7 +46,7 @@ for (job in Jenkins.instance.items)
           //      println fileSizeInKB 
             println "Workspace path : " + job.workspace
        //     println workspace.charAt(removeSymbol)
-            File workspaceFile = new File(workspace)
+         //   File workspaceFile = new File(workspace)
 
             File folder = new File(workspace) 
             println folder
@@ -70,7 +66,7 @@ for (job in Jenkins.instance.items)
                      workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
                      println "The workspace is "
                      println workspace
-                     files = new File(workspace)
+                     files = new File(workspace).text
                      
                                       files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
