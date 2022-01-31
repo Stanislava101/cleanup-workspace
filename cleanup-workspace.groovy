@@ -66,16 +66,21 @@ for (job in Jenkins.instance.items)
                      println "The workspace is "
                      println workspace
                      files = new File(workspace).listFiles()
+                     File[] newF
                      if(workspace =="/storage/jenkins/workspace/validate-iac-descriptors"){
-                         files = new File("/49675")
+                         println "testtt"
+                          newF = new File("/49675")
                      }
                      
                      
-                //                       files.sort{
-                //  a,b -> b.lastModified() <=> a.lastModified()
-                //  }
+                                      files.sort{
+                 a,b -> b.lastModified() <=> a.lastModified()
+                 }
+                newF.each{
+                    println "Line iss" +it
+                }
                 files.each{
-                    println("Line is " + it)
+                    println "Line is " + it
                 }
                 println "test"
                  files.each{
