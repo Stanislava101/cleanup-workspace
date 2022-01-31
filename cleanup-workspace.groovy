@@ -20,9 +20,6 @@ for (job in Jenkins.instance.items)
         {
         String workspace = job.workspace
 
-         //       long workspaceLength2 = job.workspace.length()
-         //       long fileSizeInKB = workspaceLength2/1024
-          //      println fileSizeInKB 
             println "Workspace path : " + job.workspace
 
             File folder = new File(workspace) 
@@ -43,18 +40,11 @@ for (job in Jenkins.instance.items)
                      println "The workspace is "
                      println workspace
                      if(workspace == "/storage/jenkins/workspace/validate-product-aws2"){
-                         println "aws3 found"
+                         println "aws2 found"
                          String dirs = workspace+"/39075"
-                         String dirs2 = workspace+"/39076"
-                         String dirs3 = workspace+"/39078"
-                         def list = []
-                         list.add(dirs)
-                         list.add(dirs2)
-                         list.add(dirs3)
-                         for (l in list){
-                             files = new File(l).listFiles()
+                         files = new File(dirs).listFiles()
                          }
-                    //     files = new File(dirs).listFiles()
+                         
 
                      }
                    //  files = new File(workspace).listFiles()
@@ -104,7 +94,6 @@ for (job in Jenkins.instance.items)
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
 
-                println ("process 2 without @")
                  files.each{
                    check =true
                         if(!it.isFile())         //isDirectory, it.isFile()
