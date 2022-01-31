@@ -67,9 +67,10 @@ for (job in Jenkins.instance.items)
                      println workspace
                  //    files = new File(workspace).listFiles()
                      def newF = []
-                     if(workspace =="/storage/jenkins/workspace/validate-iac-descriptors"){
+                     if(workspace =="/storage/jenkins/workspace/validate-product-azure"){
                          println "testtt"
-                          newF.add("/49675")
+                          newF.add("/50244")
+                          newF.add("/50249")
                      }
                      
                      
