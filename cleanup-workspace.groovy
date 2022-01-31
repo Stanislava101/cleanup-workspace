@@ -67,7 +67,7 @@ for (job in Jenkins.instance.items)
                      println "The workspace is "
                      println workspace
                     // files = new File(workspace)
-                    files = readFile workspace
+                    files = readFile(folder)
                      
                                       files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
