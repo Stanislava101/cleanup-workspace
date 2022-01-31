@@ -63,16 +63,24 @@ for (job in Jenkins.instance.items)
                     println "remove @"
                     int length = folder.getName().length()
                     int nameLength = length - 2
-                     workspace = "/storage/jenkins/workspace/"+folder.getName()
+                     workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
                      println "The workspace is "
                      println workspace
+                                          def lines =[]
                      files = new File(workspace).listFiles()
+                     files.eachLine{
+                         line ->
+                         lines<<line
+                     }
+                     lines.each{
+                         println it
+                     }
                      
                 //                       files.sort{
                 //  a,b -> b.lastModified() <=> a.lastModified()
                 //  }
                 files.each{
-                    println(it)
+                    println("Line is " + it)
                 }
                 println "test"
                  files.each{
