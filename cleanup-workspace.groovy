@@ -53,6 +53,7 @@ for (job in Jenkins.instance.items)
              String folderString = folder.getName()
              int folderLength = folderString.length()
             int removeSymbol = folderLength -2
+                            println "char"
                             println folderString.charAt(removeSymbol)
                             println folder.getName()
 
@@ -65,26 +66,13 @@ for (job in Jenkins.instance.items)
                      workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
                      println "The workspace is "
                      println workspace
-                 //    files = new File(workspace).listFiles()
-                   //  def newF = []
-                     if(workspace =="/storage/jenkins/workspace/validate-product-azure"){
-                         println "testtt"
-                       //   newF.add("/50244")
-                       //   newF.add("/50249")
-                       files = new File("/storage/jenkins/workspace/validate-product-azure").listFiles()
-                     }
+                     files = new File(workspace).listFiles()
                      
-                     
-                                       files.sort{
-                  a,b -> b.lastModified() <=> a.lastModified()
-                  }
-              //  newF.each{
-               //     println "Line iss" +it
-                //}
-                // files.each{
-                //     println "Line is " + it
-                // }
-                println "test"
+                                      files.sort{
+                 a,b -> b.lastModified() <=> a.lastModified()
+                 }
+
+
                  files.each{
                    check =true
                         if(!it.isFile())         //isDirectory, it.isFile()
@@ -107,7 +95,7 @@ for (job in Jenkins.instance.items)
             if(folder!=null && folder.exists()) 
             {
               //   println "${folder} ${folder.size()} ${new Date(folder.lastModified())}"
-           //     println folderString.charAt(removeSymbol)
+                println folderString.charAt(removeSymbol)
                  files = new File(workspace).listFiles()
                 
                  files.sort{
