@@ -44,9 +44,9 @@ for (job in Jenkins.instance.items)
                      println workspace
                      if(workspace == "/storage/jenkins/workspace/validate-product-aws2"){
                          println "aws3 found"
-                         String dirs = workspace+"/50266"
-                         String dirs2 = workspace+"/50270"
-                         String dirs3 = workspace+"/50272"
+                         String dirs = workspace+"/39075"
+                         String dirs2 = workspace+"/39076"
+                         String dirs3 = workspace+"/39078"
                          def list = []
                          list.add(dirs)
                          list.add(dirs2)
