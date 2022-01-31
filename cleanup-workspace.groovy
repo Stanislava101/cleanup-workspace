@@ -46,7 +46,7 @@ for (job in Jenkins.instance.items)
                      println "${workspace} ${workspace.size()} ${new Date(workspace.lastModified())}"
                      println "${folder} ${folder.size()} ${new Date(folder.lastModified())}"
 
-                     
+                     println "with @"
                 long workspaceLength2 = job.workspace.length()
                 long fileSizeInKB = workspaceLength2/1024
                 println fileSizeInKB 
@@ -87,7 +87,7 @@ for (job in Jenkins.instance.items)
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
 
-
+                println ("without @")
                  files.each{
                    check =true
                         if(!it.isFile())         //isDirectory, it.isFile()
