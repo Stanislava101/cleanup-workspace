@@ -51,7 +51,10 @@ for (job in Jenkins.instance.items)
                          list.add(dirs)
                          list.add(dirs2)
                          list.add(dirs3)
-                         files = new File(list).listFiles()
+                         for (l in list){
+                             files = new File(l).listFiles()
+                         }
+                    //     files = new File(dirs).listFiles()
 
                      }
                      files = new File(workspace).listFiles()
