@@ -91,16 +91,7 @@ for (job in Jenkins.instance.items)
                      
                  
                  }
-             
-          /*  if(check == true){
-                         println "Item found"
-                     }
-            */
-            if(check == false){
-                println "Workspace is empty or doesn't exist"
-            }
              }
-                }
           
             if(folder!=null && folder.exists()) 
             {
