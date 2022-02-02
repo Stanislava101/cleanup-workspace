@@ -8,7 +8,7 @@ MAX_BUILDS = 3
 
 Jenkins jenkins = Jenkins.instance
 def jenkinsNodes = jenkins.nodes
-for (job in Jenkins.instance.items) 
+for (job in Jenkins.instance) 
 {
   	int count = 0
   	boolean check = false
