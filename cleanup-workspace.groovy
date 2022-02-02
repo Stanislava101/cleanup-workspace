@@ -12,7 +12,7 @@ for (job in Jenkins.instance.items)
 {
   	int count = 0
   	boolean check = false
-      for(Node node in jenkinsNodes){
+      for(Node node in job.nodes){
           println"'$node.nodeName'"
       }
 
@@ -23,8 +23,6 @@ for (job in Jenkins.instance.items)
 
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
-            String env = System.getenv("NODE_NAME");
-            println "Agent " + env
         String workspace = job.workspace
 
             println "Workspace path : " + job.workspace
