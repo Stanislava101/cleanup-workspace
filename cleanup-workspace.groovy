@@ -25,7 +25,7 @@ for (job in Jenkins.instance.items)
 
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
-            println "Agent " + job.node
+            println job.nodes
         String workspace = job.workspace
 
             println "Workspace path : " + job.workspace
