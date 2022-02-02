@@ -32,12 +32,12 @@ def performCleanup(def node, def items) {
       println(".... could not get workspace path")
       continue
     }
-
+    String workspace = workspacePath
     
     println(".... workspace = " + workspacePath)
-    File folder = new File(workspacePath);
+    File folder = new File(workspace);
     if(folder!=null && folder.exists()){
-        File[] files = new File(workspacePath).listFiles()
+        File[] files = new File(workspace).listFiles()
         files.each{
             println it
         }
