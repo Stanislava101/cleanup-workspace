@@ -6,10 +6,15 @@ import groovy.io.FileType
 
 MAX_BUILDS = 3
 
+Jenkins jenkins = Jenkins.instance
+def jenkinsNodes = jenkins.nodes
 for (job in Jenkins.instance.items) 
 {
   	int count = 0
   	boolean check = false
+      for(Node node in jenkinsNodes){
+          println"'$node.nodeName'"
+      }
 
     println "\n ***Job Name: "+job.name+"***"
         if(job.name =="cleanup-workspace"){
