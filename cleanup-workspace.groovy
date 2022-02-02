@@ -13,7 +13,7 @@ for (job in Jenkins.instance.items)
   	int count = 0
   	boolean check = false
       Jenkins jenkins2 = Jenkins.instance
-      def jenkinsNodes = jenkins2.nodes
+      def jenkinsNodes = job.nodes
       for(Node node in jenkinsNodes){
           println"'$node.nodeName'"
       }
