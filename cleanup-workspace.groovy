@@ -26,7 +26,11 @@ def performCleanup(def node, def items) {
     }
     
     println(".. wiping out workspaces of job " + jobName)
-    
+
+    buildAgeDays = (System.currentTimeMillis() - item.getLastBuild().getTimeInMillis())/(1000*60*60*24)
+    if(buildAgeDays<5){
+    println("..job " + jobName + " was recently running")
+}
     workspacePath = node.getWorkspaceFor(item)
     if (workspacePath == null) {
       println(".... could not get workspace path")
