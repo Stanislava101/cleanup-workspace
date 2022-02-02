@@ -38,7 +38,8 @@ def performCleanup(def node, def items) {
     pathAsString = workspacePath.getRemote()
     if (workspacePath.exists()) {
             buildAgeDays = (System.currentTimeMillis() - item.getLastBuild().getTimeInMillis())/(1000*60*60*24)
-    if(buildAgeDays<5){
+    if(buildAgeDays<2){
+        println buildAgeDays
     println("..job " + jobName + " was recently running")
 }
     //  workspacePath.deleteRecursive()
