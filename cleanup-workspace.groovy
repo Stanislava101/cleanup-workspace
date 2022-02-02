@@ -8,8 +8,10 @@ MAX_BUILDS = 3
 
 //Jenkins jenkins = Jenkins.instance
 //def jenkinsNodes = jenkins.nodes
-for (job in Jenkins.instance) 
+for (job in Jenkins.instance.items) 
 {
+   println System.getenv("NODE_NAME")
+   println env.NODE_NAME
   	int count = 0
   	boolean check = false
     //  Jenkins jenkins2 = Jenkins.instance
