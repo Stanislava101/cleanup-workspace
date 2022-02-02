@@ -1,144 +1,64 @@
-import jenkins.*
-import jenkins.model.*
-import hudson.*
-import hudson.model.*
-import groovy.io.FileType
+// Check if a slave has < 10 GB of free space, wipe out workspaces if it does
 
-MAX_BUILDS = 3
-
-//Jenkins jenkins = Jenkins.instance
-//def jenkinsNodes = jenkins.nodes
-for (job in Jenkins.instance.items) 
-{
-
-  	int count = 0
-  	boolean check = false
-    //  Jenkins jenkins2 = Jenkins.instance
-    //  def jenkinsNodes = jenkins2.nodes
-     // for(Node node in jenkinsNodes){
-     //     println"'$node.nodeName'"
-     // }
-
-    println "\n ***Job Name: "+job.name+"***"
-        if(job.name =="cleanup-workspace"){
-            continue;
-        }
-
-        if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
-        {
-            for(item in hudson.model.Hudson.getInstance().getItems()){
-                if(item.getAssignedLabel!=null && item.getAssignedLabel().getName()=='slave-1'){
-                    println(item.getName() + " " + item.getAssignedLabel())
-                }
-            }
-        String workspace = job.workspace
-
-            println "Workspace path : " + job.workspace
-
-            File folder = new File(workspace) 
-            println folder
-             String folderString = folder.getName()
-             int folderLength = folderString.length()
-            int removeSymbol = folderLength -2
-                            println folderString.charAt(removeSymbol)
-                            println folder.getName()
-
-                 File[] files
-                
-                if(folder.getName().charAt(removeSymbol) == '@'){
-                    println "remove @"
-                    int length = folder.getName().length()
-                    int nameLength = length - 2
-                     workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
-                     println "The workspace is "
-                     println workspace
-                     if(workspace == "/storage/jenkins/workspace/validate-product-aws3"){
-                         println "aws3 found"
-                         files = new File("/39075").listFiles()
-
-                     }
-                   //  files = new File(workspace).listFiles()
-                     println "${workspace} ${workspace.size()}"
-                     for(file in files){
-                         println "file is " + file
-                     }
-
-                     println "with @"
-                long workspaceLength2 = job.workspace.length()
-                long fileSizeInKB = workspaceLength2/1024
-                println fileSizeInKB 
-                         
-
-                //                       files.sort{
-                //  a,b -> b.lastModified() <=> a.lastModified()
-                //  }
-                files.each{
-                    println "Path is " + it
-                }
+import hudson.model.*;
+import hudson.util.*;
+import jenkins.model.*;
+import hudson.FilePath.FileCallable;
+import hudson.slaves.OfflineCause;
+import hudson.node_monitors.*;
 
 
-                 files.each{
-                   check =true
-                        if(!it.isFile())         //isDirectory, it.isFile()
-                     {      
-                         if(count < MAX_BUILDS){
-                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
-                         }
-                         else
-                         {
-                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
-                            
-                         }
-                         count++
-                     }
-                     
-                 
-                 }
-             }
-          
-            if(folder!=null && folder.exists()) 
-            {
-                 files = new File(workspace).listFiles()
-                                println ("without @")
-                 files.sort{
-                 a,b -> b.lastModified() <=> a.lastModified()
-                 }
-
-                 files.each{
-                   check =true
-                        if(!it.isFile())         //isDirectory, it.isFile()
-                     {      
-                         if(count < MAX_BUILDS){
-                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
-                         }
-                         else
-                         {
-                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
-                            
-                         }
-                         count++
-                     }
-                     
-                 
-                 }
-             
-          /*  if(check == true){
-                         println "Item found"
-                     }
-            */
-            if(check == false){
-                println "Workspace is empty or doesn't exist"
-            }
-             }
-            
-            else
-            {
-                println "Workspace is empty or doesn't exist"
-            }
-        }
-        else
-        {
-            println "No Workspace associated with this job"
-        }
+def performCleanup(def node, def items) {
+  
+  for (item in items) {
+    jobName = item.getFullDisplayName()
+    
+    println("Cleaning " + jobName)
+    
+    if(item instanceof com.cloudbees.hudson.plugins.folder.AbstractFolder) {
+      	performCleanup(node, item.items)
+    	continue
     }
+    
+    if (item.isBuilding()) {
+      println(".. job " + jobName + " is currently running, skipped")
+      continue
+    }
+    
+    println(".. wiping out workspaces of job " + jobName)
+    
+    workspacePath = node.getWorkspaceFor(item)
+    if (workspacePath == null) {
+      println(".... could not get workspace path")
+      continue
+    }
+    
+    println(".... workspace = " + workspacePath)
+    
+    pathAsString = workspacePath.getRemote()
+    if (workspacePath.exists()) {
+    //  workspacePath.deleteRecursive()
+      println(".... deleted from location " + pathAsString)
+    } else {
+      println(".... nothing to delete at " + pathAsString)
+    }
+  }  
+}
 
+
+for (node in Jenkins.instance.nodes) {
+    computer = node.toComputer()
+    if (computer.getChannel() == null) continue
+
+    rootPath = node.getRootPath()
+    size = DiskSpaceMonitor.DESCRIPTOR.get(computer).size
+    roundedSize = size / (1024 * 1024 * 1024) as int
+
+    println("node: " + node.getDisplayName() + ", free space: " + roundedSize + "GB")
+    computer.setTemporarilyOffline(true, new hudson.slaves.OfflineCause.ByCLI("disk cleanup"))
+  
+    performCleanup(node, Jenkins.instance.items)
+  
+    computer.setTemporarilyOffline(false, null)
+
+}
