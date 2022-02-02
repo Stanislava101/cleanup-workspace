@@ -12,11 +12,11 @@ for (job in Jenkins.instance.items)
 {
   	int count = 0
   	boolean check = false
-      Jenkins jenkins2 = Jenkins.instance
-      def jenkinsNodes = jenkins2.nodes
-      for(Node node in job.nodes){
-          println"'$node.nodeName'"
-      }
+    //  Jenkins jenkins2 = Jenkins.instance
+    //  def jenkinsNodes = jenkins2.nodes
+     // for(Node node in jenkinsNodes){
+     //     println"'$node.nodeName'"
+     // }
 
     println "\n ***Job Name: "+job.name+"***"
         if(job.name =="cleanup-workspace"){
@@ -25,6 +25,7 @@ for (job in Jenkins.instance.items)
 
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
+            println "Agent " + job.node
         String workspace = job.workspace
 
             println "Workspace path : " + job.workspace
