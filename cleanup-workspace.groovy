@@ -40,7 +40,7 @@ def performCleanup(def node, def items) {
       String workspace = workspacePath
       File folder = new File(workspace)
       if(folder!=null && folder.exists()){
-        File files = (File[]) new File(workspace).listFiles()
+        File files = new File []
         files.each{
          println it.name
         }
