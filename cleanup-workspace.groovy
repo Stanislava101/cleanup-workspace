@@ -48,6 +48,8 @@ for (job in Jenkins.instance.items)
                           println "True"
                         } else if (f.isDirectory() == true){
                           println "False"
+                        }else {
+                          println "Can't find folder"
                         }
                      }
 
