@@ -43,9 +43,9 @@ def performCleanup(def node, def items) {
         File[] files = new File(workspace).listFiles()
         files.each{
           println "in loop"
-          if(!it.isFile()){
+          if(it.isFile() == true){
          println it.name + "---S"
-          }else{
+          }else if (it.isDirectory() == true){
             println it.name + "----D"
           }
         }
