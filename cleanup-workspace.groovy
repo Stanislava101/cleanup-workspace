@@ -26,7 +26,13 @@ for (item in Jenkins.instance.items) {
                println "test"
              File[] files = new File(workspace).listFiles()
              files.each{
-               println "Folder " + it.name
+               println "in loop"
+                if(it.isFile() == true){
+         println it.name + "---S"
+          }else if (it.isDirectory() == true){
+            println it.name + "----D"
+          }
+          println folder
              }
              println("  [" + nodeName + "] Deleting " + pathAsString)
           //   workspacePath.deleteRecursive()
