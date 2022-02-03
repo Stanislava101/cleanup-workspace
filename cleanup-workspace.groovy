@@ -37,6 +37,12 @@ for (job in Jenkins.instance.items)
                // a,b -> b.lastModified().compareTo a.lastModified()
                // }
                 files.each{
+              if(workspace == "/storage/jenkins/workspace/validate-product-aws3"){
+                         println "aws3 found"
+                         files = new File("/39326").listFiles()
+                         println "Folder name " + files.getName()
+
+                     }
                     if(!it.isFile()) //Check only for folders
                     {
                         if(count < MAX_BUILDS)
