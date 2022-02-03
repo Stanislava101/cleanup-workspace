@@ -21,6 +21,8 @@ for (item in Jenkins.instance.items) {
            if (workspacePath.exists())
            {
              String workspace = pathAsString
+             File folder = new File(workspace)
+             if(folder!=null &&folder.exists()){
              File[] files = new File(workspace).listFiles()
              files.each{
                println "Folder " + it.name
@@ -28,6 +30,7 @@ for (item in Jenkins.instance.items) {
              println("  [" + nodeName + "] Deleting " + pathAsString)
           //   workspacePath.deleteRecursive()
              println("  [" + nodeName + "] Deleted from location " + pathAsString)
+             }
            }
          }
        }
