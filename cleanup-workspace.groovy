@@ -40,10 +40,11 @@ def performCleanup(def node, def items) {
       String workspace = workspacePath
       File folder = new File(workspace)
       if(folder!=null && folder.exists()){
-        File files = new File(workspace).listFiles()
-        files.each{
-          println it.name
-        }
+      //  File files = new File(workspace).listFiles()
+      //  files.each{
+      //    println it.name
+       // }
+       println folder
       }
     //  workspacePath.deleteRecursive()
       println(".... deleted from location " + pathAsString)
