@@ -37,9 +37,10 @@ def performCleanup(def node, def items) {
     
     pathAsString = workspacePath.getRemote()
     if (workspacePath.exists()) {
-      File folder = new File(pathAsString)
+      String workspace = workspacePath
+      File folder = new File(workspace)
       if(folder!=null && folder.exists()){
-        File files = new File(pathAsString).listFiles()
+        File files = new File(workspace).listFiles()
         files.each{
           println it.name
         }
