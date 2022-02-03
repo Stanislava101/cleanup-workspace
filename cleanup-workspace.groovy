@@ -43,7 +43,7 @@ for (job in Jenkins.instance.items)
                          println "aws3 found"
                        //  File folderN = new File("/39325")
                         // String folderS = folderN.getName() 
-                         File f = new File("/storage/jenkins/workspace/validate-product-aws3/39325")
+                         File f = new File("/storage/jenkins/workspace/validate-product-aws3/39340")
                         if(f.isFile() == true){
                           println "True"
                         } else if (f.isDirectory() == true){
@@ -65,7 +65,7 @@ for (job in Jenkins.instance.items)
                          println "aws3 found"
                        //  files = new File("/storage/jenkins/workspace/validate-product-aws3/39326").listFiles()
                       //  files = new File("/storage/jenkins/workspace/validate-product-aws3/39344").listFiles()
-                        File f = new File("/storage/jenkins/workspace/validate-product-aws3/39325")
+                        File f = new File("/storage/jenkins/workspace/validate-product-aws3/39340")
                         if(f.isFile() == true){
                           println "True"
                         } else if (f.isDirectory() == true){
