@@ -4,7 +4,7 @@ import hudson.*
 import hudson.model.*
 import groovy.io.FileType
 
-MAX_BUILDS = 1
+MAX_BUILDS = 20
 
 //Jenkins jenkins = Jenkins.instance
 //def jenkinsNodes = jenkins.nodes
