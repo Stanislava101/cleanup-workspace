@@ -28,10 +28,12 @@ for (job in Jenkins.instance.items)
                 // Get all files and folders within the Workspace of current job. 
                 //Iterate through only folders and sort em by Modified Date.
                 
-                File[] files = new File(workspace).listFiles().sort(){
-                a,b -> b.lastModified().compareTo a.lastModified()
-                }
-                .each{
+                File[] files = new File(workspace).listFiles()
+                
+                //.sort(){
+               // a,b -> b.lastModified().compareTo a.lastModified()
+               // }
+                files.each{
                     if(!it.isFile()) //Check only for folders
                     {
                         if(count < MAX_BUILDS)
