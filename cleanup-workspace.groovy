@@ -23,6 +23,7 @@ for (item in Jenkins.instance.items) {
              String workspace = pathAsString
              File folder = new File(workspace)
              if(folder!=null &&folder.exists()){
+               println "test"
              File[] files = new File(workspace).listFiles()
              files.each{
                println "Folder " + it.name
