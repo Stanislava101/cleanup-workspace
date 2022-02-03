@@ -23,11 +23,20 @@ for (job in Jenkins.instance.items)
         if(job.name =="cleanup-workspace"){
             continue;
         }
-
+        String workspace
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
+          customWorkspace = job.getCustomWorkspace()
+          println "Custom " + customWorkspace
+          for(node in Jenkins.getInstance().getNodes()){
+            if(customWorkspace!=null){
+              workspace = node.getRootPath().child(customWorkspace)
+              println "New workspace " + workspace
+            }
+          }
 
-        String workspace = job.workspace
+
+        workspace = job.workspace
 
             println "Workspace path : " + job.workspace
 
