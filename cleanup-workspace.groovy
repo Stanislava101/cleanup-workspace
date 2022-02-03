@@ -20,6 +20,10 @@ for (item in Jenkins.instance.items) {
            pathAsString = workspacePath.getRemote()
            if (workspacePath.exists())
            {
+             File[] files = new File(pathAsString).listFiles()
+             files.each{
+               println "Folder " + it.name
+             }
              println("  [" + nodeName + "] Deleting " + pathAsString)
           //   workspacePath.deleteRecursive()
              println("  [" + nodeName + "] Deleted from location " + pathAsString)
