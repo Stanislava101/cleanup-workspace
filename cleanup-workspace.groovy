@@ -32,26 +32,18 @@ def performCleanup(def node, def items) {
       println(".... could not get workspace path")
       continue
     }
-    String workspace = workspacePath
     
     println(".... workspace = " + workspacePath)
-
     
     pathAsString = workspacePath.getRemote()
     if (workspacePath.exists()) {
-            File folder = new File(workspace);
-    if(folder!=null && folder.exists()){
-        File[] files = new File(workspace).listFiles()
+      File folder = new File(pathAsString)
+      if(folder!=null && folder.exists()){
+        File files = new File(pathAsString).listFiles()
         files.each{
-            println it
+          println it.name
         }
-    }
-    /*        buildAgeDays = (System.currentTimeMillis() - item.getLastBuild().getTimeInMillis())/(1000*60*60*24)
-    if(buildAgeDays<2){             
-        println buildAgeDays
-    println("..job " + jobName + " was recently running")
-}
-*/
+      }
     //  workspacePath.deleteRecursive()
       println(".... deleted from location " + pathAsString)
     } else {
