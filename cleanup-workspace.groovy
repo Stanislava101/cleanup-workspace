@@ -20,7 +20,7 @@ for (item in Jenkins.instance.items) {
            pathAsString = workspacePath.getRemote()
            if (workspacePath.exists())
            {
-             String workspace = pathAsString
+             String workspace = workspacePath
              File folder = new File(workspace)
              if(folder!=null &&folder.exists()){
                println "test"
