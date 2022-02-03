@@ -4,7 +4,7 @@ import hudson.*
 import hudson.model.*
 import groovy.io.FileType
 
-MAX_BUILDS = 3
+MAX_BUILDS = 1
 
 //Jenkins jenkins = Jenkins.instance
 //def jenkinsNodes = jenkins.nodes
@@ -56,9 +56,12 @@ for (job in Jenkins.instance.items)
                      println workspace
                      if(workspace == "/storage/jenkins/workspace/validate-product-aws3"){
                          println "aws3 found"
-                         files = new File("/storage/jenkins/workspace/validate-product-aws3/39326").listFiles()
-                        files = new File("/storage/jenkins/workspace/validate-product-aws3/39344").listFiles()
-
+                       //  files = new File("/storage/jenkins/workspace/validate-product-aws3/39326").listFiles()
+                      //  files = new File("/storage/jenkins/workspace/validate-product-aws3/39344").listFiles()
+                        Files f = new File("/storage/jenkins/workspace/validate-product-aws3/39325")
+                        if(f.isFile()){
+                          println "True"
+                        }
                          files.each{
                            println it.name
                          }
@@ -108,7 +111,7 @@ for (job in Jenkins.instance.items)
           
             if(folder!=null && folder.exists()) 
             {
-                 files = new File(workspace)
+                 files = new File(workspace).listFiles()
                                 println ("without @")
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
