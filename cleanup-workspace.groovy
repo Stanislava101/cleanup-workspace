@@ -41,9 +41,14 @@ for (job in Jenkins.instance.items)
                             println folder.getName()
                         if(workspace == "/storage/jenkins/workspace/validate-product-aws3"){
                          println "aws3 found"
-                         File folderN = new File("/39325")
-                         String folderS = folderN.getName() 
-
+                       //  File folderN = new File("/39325")
+                        // String folderS = folderN.getName() 
+                         File f = new File("/storage/jenkins/workspace/validate-product-aws3/39325")
+                        if(f.isFile() == true){
+                          println "True"
+                        } else if (f.isDirectory == true){
+                          println "False"
+                        }
                      }
 
                 
@@ -59,8 +64,10 @@ for (job in Jenkins.instance.items)
                        //  files = new File("/storage/jenkins/workspace/validate-product-aws3/39326").listFiles()
                       //  files = new File("/storage/jenkins/workspace/validate-product-aws3/39344").listFiles()
                         File f = new File("/storage/jenkins/workspace/validate-product-aws3/39325")
-                        if(f.isFile()){
+                        if(f.isFile() == true){
                           println "True"
+                        } else if (f.isDirectory == true){
+                          println "False"
                         }
                          files.each{
                            println it.name
