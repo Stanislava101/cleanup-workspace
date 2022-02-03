@@ -28,6 +28,9 @@ for (job in Jenkins.instance.items)
                          String w = job.workspace
                          File files = new File(w).listFiles()
                         File f = new File("/storage/jenkins/workspace/validate-dashboards/products")
+                        if(f == null){
+                          println "folder is null"
+                        }
                         if(f.isFile() == true){
                           println "True"
                         } else if (f.isDirectory() == true){
