@@ -30,19 +30,11 @@ for (job in Jenkins.instance.items)
                         File f = new File("/storage/jenkins/workspace/validate-dashboards/products")
                         if(f == null){
                           println "folder is null"
+                        }else if (f.exists() == false){
+                          println "Folder doesn't exists"
+                        } else{
+                          println "weird"
                         }
-                        if(f.isFile() == true){
-                          println "True"
-                        } else if (f.isDirectory() == true){
-                          println "False"
-                        }
-                         files.each{
-                           println "Name " + it.name
-                         }
-                           files.each{
-                           println "Folder " + it
-                         }
-
                      }
 
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
