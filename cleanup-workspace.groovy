@@ -57,7 +57,7 @@ for (job in Jenkins.instance.items)
                      if(workspace == "/storage/jenkins/workspace/validate-product-aws3"){
                          println "aws3 found"
                          files = new File("/storage/jenkins/workspace/validate-product-aws3/39325").listFiles()
-                        files = new File("/storage/jenkins/workspace/validate-product-aws3/39346").listFiles()
+                        files = new File("/storage/jenkins/workspace/validate-product-aws3@3/39346").listFiles()
 
                          files.each{
                            println it.name
