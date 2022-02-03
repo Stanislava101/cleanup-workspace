@@ -55,6 +55,3 @@ for (job in Jenkins.instance.items)
             println "No Workspace associated with this job"
         }
     }
-
-}
-
