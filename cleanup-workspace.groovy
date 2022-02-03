@@ -41,9 +41,9 @@ def performCleanup(def node, def items) {
       File folder = new File(workspace)
       if(folder!=null && folder.exists()){
         File files = new File(workspace)
-      //  files.each{
-      //    println it.name
-       // }
+        files.each{
+         println it.name
+        }
        println folder
       }
     //  workspacePath.deleteRecursive()
