@@ -10,6 +10,9 @@ MAX_BUILDS =4
 
 for (job in Jenkins.instance.items) 
 {
+        if(job.name =="cleanup-workspace"){
+            continue;
+        }
   
   	int count = 0
   	
