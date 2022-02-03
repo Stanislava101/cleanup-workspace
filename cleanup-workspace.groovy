@@ -42,11 +42,11 @@ def performCleanup(def node, def items) {
       if(folder!=null && folder.exists()){
         File[] files = new File(workspace).listFiles()
         files.each{
-          println "test"
+          println "in loop"
           if(!it.isFile()){
-         println it.name
+         println it.name + "---S"
           }else{
-            println it.name
+            println it.name + "----D"
           }
         }
        println folder
