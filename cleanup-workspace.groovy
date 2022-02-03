@@ -23,6 +23,24 @@ for (job in Jenkins.instance.items)
         if(job.name =="cleanup-workspace"){
             continue;
         }
+        if(job.name == "validate-dashboards"){
+                         println "dashboards found"
+                         String w = job.workspace
+                         File files = new File(w).listFiles()
+                        File f = new File("/storage/jenkins/workspace/validate-dashboards/products")
+                        if(f.isFile() == true){
+                          println "True"
+                        } else if (f.isDirectory() == true){
+                          println "False"
+                        }
+                         files.each{
+                           println "Name " + it.name
+                         }
+                           files.each{
+                           println "Folder " + it
+                         }
+
+                     }
 
         if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
@@ -39,18 +57,23 @@ for (job in Jenkins.instance.items)
             int removeSymbol = folderLength -2
                             println folderString.charAt(removeSymbol)
                             println folder.getName()
-                        if(workspace == "/storage/jenkins/workspace/validate-product-aws3"){
-                         println "aws3 found"
-                       //  File folderN = new File("/39325")
-                        // String folderS = folderN.getName() 
-                         File f = new File("/storage/jenkins/workspace/validate-product-aws3/39340")
+            if(workspace == "/storage/jenkins/workspace/validate-dashboards"){
+                         println "dashboards found"
+                       //  files = new File("/storage/jenkins/workspace/validate-product-aws3/39326").listFiles()
+                      //  files = new File("/storage/jenkins/workspace/validate-product-aws3/39344").listFiles()
+                        File f = new File("/storage/jenkins/workspace/validate-product-aws3/39340")
                         if(f.isFile() == true){
                           println "True"
                         } else if (f.isDirectory() == true){
                           println "False"
-                        }else {
-                          println "Can't find folder"
                         }
+                         files.each{
+                           println it.name
+                         }
+                           files.each{
+                           println it
+                         }
+
                      }
 
                 
