@@ -27,7 +27,7 @@ for (job in Jenkins.instance.items)
                          println "dashboards found"
                          String w = job.workspace
                          File files = new File(w).listFiles()
-                        File f = new File("/products")
+                        File f = new File("products")
                         if(f == null){
                           println "folder is null"
                         }else if (f.exists() == false){
