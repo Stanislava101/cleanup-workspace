@@ -11,10 +11,11 @@ for (item in Jenkins.instance.items) {
        {
          nodeName = node.getDisplayName()
          workspacePath = node.getWorkspaceFor(item)
-         if (customWorkspace != null)
-         {
-           workspacePath = node.getRootPath().child(customWorkspace)
-         }
+         
+     //    if (customWorkspace != null)
+      //   {
+      //     workspacePath = node.getRootPath().child(customWorkspace)
+       //  }
          if (workspacePath != null)
          {
            pathAsString = workspacePath.getRemote()
