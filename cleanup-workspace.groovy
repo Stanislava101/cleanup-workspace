@@ -3,7 +3,7 @@ import jenkins.model.*;
 for (item in Jenkins.instance.items) {
   jobName = item.getFullDisplayName()
  //  if(!item.isBuilding()) {
-     if (jobName.startsWith("validate")) {
+     if (jobName.startsWith("backup")) {
        println("Wiping out workspaces of job " + jobName)
        customWorkspace = item.getCustomWorkspace()
 
