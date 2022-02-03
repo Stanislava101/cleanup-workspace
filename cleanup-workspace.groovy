@@ -20,7 +20,8 @@ for (item in Jenkins.instance.items) {
            pathAsString = workspacePath.getRemote()
            if (workspacePath.exists())
            {
-             File[] files = new File(pathAsString).listFiles()
+             String workspace = pathAsString
+             File[] files = new File(workspace).listFiles()
              files.each{
                println "Folder " + it.name
              }
