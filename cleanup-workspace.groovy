@@ -46,7 +46,7 @@ for (job in Jenkins.instance.items)
                          File f = new File("/storage/jenkins/workspace/validate-product-aws3/39325")
                         if(f.isFile() == true){
                           println "True"
-                        } else if (f.isDirectory() == true){
+                        } else if (f.isFile() == false){
                           println "False"
                         }else {
                           println "Can't find folder"
