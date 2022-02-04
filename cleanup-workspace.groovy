@@ -2,7 +2,6 @@ import jenkins.*
 import jenkins.model.*
 import hudson.*
 import hudson.model.*
-import java.util.*
 
 
 //Get value from String Parameter
@@ -47,20 +46,20 @@ for (job in Jenkins.instance.items)
                       //    println f
                       if(!it.isFile()){
                         if(count < MAX_BUILDS){
-                          Calendar calendar = Calendar.getInstance();
-                          calendar.add(Calendar.DAY_OF_MONTH, -7)
-                          Date lastDate = calendar.getTime()
-                        long diff = getDateDiff(lastDate, new Date(f.lastModified()), TimeUnit.DAYS)
-                        if(Math.abs(diff) <=7)
-                        {
+                          Date diff = new Date(f.lastModified())
+                          Date now = new Date().format('yyyyMMdd')
+                          use(groovy.time.TimeCategory){
+                          def duration = now - diff
+                          println "Duration " + duration
+                          }
                             println new Date(f.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + f.name + " -- Save" 
                         }
-                        
                         else
                         {
                             println new Date(f.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + f.name + " ** Deleted" 
                         //    it.deleteDir()
                         }
+                      }
                         }
                         if(count < MAX_BUILDS)
                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
@@ -78,14 +77,8 @@ for (job in Jenkins.instance.items)
                 println "Workspace is empty or doesn't exist"
             }
         }
-     //   else
-     //   {
-     //       println "No Workspace associated with this job"
-     //   }
-    }
-
-
-    def getDateDiff(Date date1, Date date2, TimeUnit timeUnit){
-      long diffInMillies = date2.getTime() - date1.getTime()
-      return timeUnit.convert(diffInMiilies, TimeUnit.MILLISECONDS)
+        else
+        {
+            println "No Workspace associated with this job"
+        }
     }
