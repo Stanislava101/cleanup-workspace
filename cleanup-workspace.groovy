@@ -113,7 +113,7 @@ for (item in Hudson.instance.items)
           pathAsString = workspacePath.getRemote()
           if (workspacePath.exists())
           {
-            File folder = new File("/storage/jenkins/workspace/validate-dashboards/products/product-cf-hcp").text
+            File[] folder = new File("/storage/jenkins/workspace/validate-dashboards/products/product-cf-hcp").listFiles()
 
             println folder
             File[] files = new File(pathAsString).listFiles()
