@@ -33,7 +33,7 @@ for (item in Hudson.instance.items)
           {
             println workspacePath
             String w = workspacePath
-            File[] files = new File("/storage/jenkins/workspace/validate-product-gcp").listFiles()
+            File[] files = new File("./").listFiles()
             files.each{
               println it.name
             }
