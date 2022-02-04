@@ -1,125 +1,126 @@
-import hudson.model.*;
-import hudson.util.*;
-import jenkins.model.*;
-import hudson.FilePath.FileCallable;
-import hudson.slaves.OfflineCause;
-import hudson.node_monitors.*;
 
-//threshold is in GB and comes from a job parameter
-def threshold = 1
-def skippedLabels = [ 'container' ] //don't clean docker slaves
-def extraDirectoriesToDelete = [ 'temp' ] //additional paths under slave's root path that should be removed if found
+import hudson.model.*
+import hudson.node_monitors.*
+import hudson.slaves.*
+import hudson.FilePath
+import java.util.concurrent.*
 
+jenkins = Hudson.instance
 
-def deleteRemote(def path, boolean deleteContentsOnly) {
-  boolean result = true
-  def pathAsString = path.getRemote()
-  if (path.exists()) {
+// Define day to compare (will find builds that were built more than n day ago)
+day=3;
+hour=24;
+minute=60;
+second=60;
+daysInSecond=day*hour*minute*second;
+now=Calendar.instance;
+list=[];
+listFreezeBuild=[];
+listProceeded=[];
+
+println("The build is run at ${now.time}");
+
+println("\n### GET LIST OF ALL JOBS ###\n")
+
+for (item in jenkins.items) {
+  println("\tProcessing ${item.name}...")
+  // ignore project that contains freeze or patch case insensitive
+  if (item.name ==~ /(?i)(freeze|patch).*/) {
+    // add item to list
+    listFreezeBuild << item;
+  } else if (!item.disabled&&item.getLastBuild()!=null) {
+    // caculate build time
+    build_time=item.getLastBuild().getTimestamp();
+    // compare build time with current time
+    if (now.time.time/1000-build_time.time.time/1000>daysInSecond) {
+      // add item to list
+      list << item;
+    }
+  }
+}
+
+println("\n### DISABLE OLD JOBS ###\n")
+
+def disableJob(item) {
+  if (item.class.canonicalName != 'com.cloudbees.hudson.plugins.folder.Folder') {
+    // disable item
+    item.disabled=true;
+    // save
+    item.save();
+  }
+}
+
+def pushLogRotate(item) {
+  // perform log rotation
+  item.logRotate();
+}
+
+def wipeOutWorkspace(item) {
+  // check if build is not in building stage
+  if(!item.isBuilding()) {
     try {
-      if (deleteContentsOnly) {
-   //     path.deleteContents()
-        println ".... deleted ALL contents of ${pathAsString}"
-      } else {
-     // 	path.deleteRecursive()
-        println ".... deleted directory ${pathAsString}"
-      }
-    } catch (Throwable t) {
-      println "Failed to delete ${pathAsString}: ${t}"
-      result = false
+      // wipe out the workspace
+      item.doDoWipeOutWorkspace();
+    }
+    catch (ex) {
+      println("Error: " + ex);
     }
   }
-  return result
 }
 
-
-def failedNodes = []
-
-for (node in Jenkins.instance.nodes) {
-  computer = node.toComputer()
-  if (computer.getChannel() == null) {
-    continue
-  }
-      
-  if (node.assignedLabels.find{ it.expression in skippedLabels }) {
-    println "Skipping ${node.displayName} based on labels"
-    continue
-  }
-
-  try {
-    size = DiskSpaceMonitor.DESCRIPTOR.get(computer).size
-    roundedSize = size / (1024 * 1024 * 1024) as int
-
-    println("node: " + node.getDisplayName() + ", free space: " + roundedSize + "GB. Idle: ${computer.isIdle()}")
-    if (roundedSize < threshold) {
-      def prevOffline = computer.isOffline()
-      if (prevOffline && computer.getOfflineCauseReason().startsWith('disk cleanup from job')) {
-        prevOffline = false //previous run screwed up, ignore it and clear it at the end
+def wipeOutWorkspaceFromSlaves(item) {
+  for (slave in hudson.model.Hudson.instance.slaves) {
+    // get slave name
+    slaveNodeName = slave.getNodeName();
+    println("\t\tCheck ${slaveNodeName} slave...");
+    // get workspace root for specify slave
+    workspaceRoot = slave.getWorkspaceRoot();
+    // create path slave with workspace
+    FilePath fp = slave.createPath(workspaceRoot.toString() + File.separator + item.name);
+    // check that workspace root exists and path to workspace exists
+    if ((workspaceRoot != null) && (fp.exists())) {
+      // delete workspace recursively
+      println("\t\tWipe out ${fp}...")
+      try {
+      //  fp.deleteRecursive();
+      println "delete"
       }
-      if (!prevOffline) {
-        //don't override any previosly set temporarily offline causes (set by humans possibly)
-      	computer.setTemporarilyOffline(true, new hudson.slaves.OfflineCause.ByCLI("disk cleanup from job "))
-      }
-      if (computer.isIdle()) {
-        //It's idle so delete everything under workspace
-        def workspaceDir = node.rootPath.child('workspace')
-        if (!deleteRemote(workspaceDir, true)) {
-          failedNodes << node
-        }
-        
-        //delete custom workspaces
-        Jenkins.instance.getAllItems(TopLevelItem).findAll{item ->  item instanceof Job && !("${item.class}".contains('WorkflowJob')) && item.getCustomWorkspace()}.each{ item ->
-          if (!deleteRemote(node.getRootPath().child(item.customWorkspace), false)) {
-            failedNodes << node
-          }
-        }
-        
-        extraDirectoriesToDelete.each{
-          if (!deleteRemote(node.getRootPath().child(it), false)) {
-            failedNodes << node
-          }
-        }
-        
-      } else {
-      
-      	Jenkins.instance.getAllItems(TopLevelItem).findAll{item ->  item instanceof Job && !item.isBuilding() && !("${item.class}".contains('WorkflowJob')) }.each{ item ->
-          jobName = item.getFullDisplayName()
-          
-          
-          //println(".. checking workspaces of job " + jobName)
-          
-          workspacePath = node.getWorkspaceFor(item)
-          if (!workspacePath) {
-            println(".... could not get workspace path for ${jobName}")
-            return
-              }
-          
-          //println(".... workspace = " + workspacePath)
-          
-          customWorkspace = item.getCustomWorkspace()
-          if (customWorkspace) {
-            workspacePath = node.getRootPath().child(customWorkspace)
-            //    println(".... custom workspace = " + workspacePath)
-          }
-          
-          if (!deleteRemote(workspacePath, false)) {
-            failedNodes << node
-          }
-        }
-      }
-
-      if (!prevOffline) {
-        computer.setTemporarilyOffline(false, null)
+      catch (ex) {
+        println("Error: " + ex);
       }
     }
-  } catch (Throwable t) {
-    println "Error with ${node.displayName}: ${t}"
-    failedNodes << node
-    
   }
 }
 
-println "\n\nSUMMARY\n\n"        
-failedNodes.each{node ->
-  println "\tERRORS with: ${node.displayName}"
+if (list.size() > 0) {
+  for (item in list) {
+    println("\tDisabling ${item.name}...");
+  //  disableJob(item);
+    println("\tPush log rotate for ${item.name}...");
+    pushLogRotate(item);
+    println("\tWipe out workspace for ${item.name}...");
+   // wipeOutWorkspace(item);
+    println("\tWipe out workspace for ${item.name} from slaves...")
+    wipeOutWorkspaceFromSlaves(item);
+    // add item to list
+    listProceeded << item;
+  }
 }
-//assert failedNodes.size() == 0
+
+println("\n### SUMMARY INFORMATION ###\n");
+
+if (listFreezeBuild.size() > 0) {
+  println("Next jobs were ignored as it is a freeze or patch build:")
+  for (item in listFreezeBuild) {
+     println("\t${item.name}");
+  }
+}
+
+if (listProceeded.size() > 0) {
+  println("Next jobs were procced, disabled and cleaned workspace:")
+  for (item in listProceeded) {
+     println("\t${item.name}");
+  }
+}
+
+return 0;
