@@ -10,8 +10,8 @@ for (item in Hudson.instance.items)
     if (jobName == "backup-jenkins-jobs")
     {
       println("Wiping out workspaces of job " + jobName)
-      customWorkspace = item.getCustomWorkspace()
-      println("Custom workspace = " + customWorkspace)
+   //   customWorkspace = item.getCustomWorkspace()
+    //  println("Custom workspace = " + customWorkspace)
       
       for (node in Hudson.getInstance().getNodes())
       {
