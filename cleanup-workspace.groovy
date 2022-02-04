@@ -96,7 +96,7 @@ for (item in Hudson.instance.items)
         }
       }
     }
-        if (jobName == "validate-product-aws")
+        if (jobName == "validate-product-azure")
     {
       println("Wiping out workspaces of job " + jobName)
       
