@@ -96,7 +96,7 @@ for (item in Hudson.instance.items)
         }
       }
     }
-        if (jobName == "validate-product-azure")
+        if (jobName == "visualise-update-commands-for-release")
     {
       println("Wiping out workspaces of job " + jobName)
       
