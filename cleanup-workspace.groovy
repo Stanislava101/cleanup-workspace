@@ -158,7 +158,7 @@ list.each{
           if (workspacePath.exists())
           {
 def list = []
-def dir = new File("/storage/jenkins/workspace/scan-bom-product-als")
+def dir = new File("/storage/jenkins/workspace/scan-product-cf-hcp-metadata-latest")
 dir.eachFileRecurse(FileType.FILES){
   file ->
   list<<file
