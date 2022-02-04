@@ -23,10 +23,10 @@ for (item in Hudson.instance.items)
         }
         else
         {
-          if (customWorkspace != null)
-          {
-            workspacePath = node.getRootPath().child(customWorkspace)
-          }
+     //     if (customWorkspace != null)
+      //    {
+      //      workspacePath = node.getRootPath().child(customWorkspace)
+       //   }
 
           pathAsString = workspacePath.getRemote()
           if (workspacePath.exists())
