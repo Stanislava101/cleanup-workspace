@@ -30,7 +30,7 @@ for (job in Jenkins.instance.items)
                          println "dashboards found"
                          String w = job.workspace
                       //   File files = new File(w).listFiles()
-                        File f = new File(w)
+                        File f = new File("/storage/jenkins/workspace/validate-dashboards/products")
                         if(f == null){
                           println "folder is null"
                         }else if (f.exists() == false){
@@ -38,7 +38,7 @@ for (job in Jenkins.instance.items)
                           println "Folder doesn't exists"
                         } else{
                           println "weird"
-                          File theF = new File(w).listFiles()
+                          File theF = new File("/storage/jenkins/workspace/validate-dashboards/products").listFiles()
                           theF.each{
                             println it.name + " ---S"
                           }
