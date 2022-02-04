@@ -140,7 +140,7 @@ list.each{
         }
       }
     }
-            if (jobName == "scan-product-cf-hcp-metadata-latest")
+            if (jobName == "visualise-update-commands-for-release")
     {
       println("Wiping out workspaces of job " + jobName)
       
@@ -158,7 +158,7 @@ list.each{
           if (workspacePath.exists())
           {
 def list = []
-def dir = new File("/storage/jenkins/workspace/scan-product-cf-hcp-metadata-latest")
+def dir = new File("/storage/jenkins/workspace/visualise-update-commands-for-release")
 dir.eachFileRecurse(FileType.FILES){
   file ->
   list<<file
