@@ -31,6 +31,10 @@ for (item in Hudson.instance.items)
           pathAsString = workspacePath.getRemote()
           if (workspacePath.exists())
           {
+            File[] files = new File(pathAsString).listFiles()
+            files.each{
+              println it.name
+            }
            // workspacePath.deleteRecursive()
             println("    Deleted from location " + pathAsString)
           }
