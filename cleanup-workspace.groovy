@@ -7,7 +7,7 @@ for (item in Hudson.instance.items)
   //if (!item.isBuilding())
   //{
     // TODO: Modify the following condition to select which jobs to affect
-    if (jobName == "build-product-buildpacks")
+    if (jobName == "validate-dashboards")
     {
       println("Wiping out workspaces of job " + jobName)
       customWorkspace = item.getCustomWorkspace()
