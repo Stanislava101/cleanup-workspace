@@ -20,10 +20,10 @@ def performCleanup(def node, def items) {
     	continue
     }
     
-    if (item.isBuilding()) {
-      println(".. job " + jobName + " is currently running, skipped")
-      continue
-    }
+   // if (item.isBuilding()) {
+    //  println(".. job " + jobName + " is currently running, skipped")
+    //  continue
+   // }
     
     println(".. wiping out workspaces of job " + jobName)
     
