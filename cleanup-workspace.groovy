@@ -160,6 +160,15 @@ for (job in Jenkins.instance.items)
                    println l
                  }
 
+                 def dlist = []
+                 new File(workspace).eachDir {
+                   dlist << it.name
+                 }
+                 for(dl in dlist){
+                   println "Dirs " + dl
+                 }
+
+
                  files.each{
                    check =true
                         if(!it.isFile())         //isDirectory, it.isFile()
