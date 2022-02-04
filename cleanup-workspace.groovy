@@ -46,7 +46,11 @@ for (job in Jenkins.instance.items)
                       //    println f
                       if(!it.isFile()){
                         if(count < MAX_BUILDS)
+                        long diff = new Date().getTime() - f.lastModified()
+                        if(diff> 730 *24 *60 * 60 *1000 )
+                        {
                             println new Date(f.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + f.name + " -- Save" 
+                        }
                         else
                         {
                             println new Date(f.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + f.name + " ** Deleted" 
