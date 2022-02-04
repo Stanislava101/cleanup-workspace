@@ -1,4 +1,5 @@
 import hudson.model.*
+import groovy.io.FileType
 
 for (item in Hudson.instance.items)
 {
