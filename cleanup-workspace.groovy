@@ -7,7 +7,7 @@ for (item in Hudson.instance.items)
   //if (!item.isBuilding())
   //{
     // TODO: Modify the following condition to select which jobs to affect
-    if (jobName == "validate-concourse-pipeline")
+    if (jobName == "validate-product-gcp")
     {
       println("Wiping out workspaces of job " + jobName)
       customWorkspace = item.getCustomWorkspace()
