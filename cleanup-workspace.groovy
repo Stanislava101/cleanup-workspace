@@ -6,7 +6,7 @@ import hudson.slaves.OfflineCause;
 import hudson.node_monitors.*;
 
 //threshold is in GB and comes from a job parameter
-def threshold = Integer.parseInt(build.buildVariableResolver.resolve("CLEAN_THRESHOLD"))
+//def threshold = Integer.parseInt(build.buildVariableResolver.resolve("CLEAN_THRESHOLD"))
 def skippedLabels = [ 'container' ] //don't clean docker slaves
 def extraDirectoriesToDelete = [ 'temp' ] //additional paths under slave's root path that should be removed if found
 
@@ -57,7 +57,7 @@ for (node in Jenkins.instance.nodes) {
       }
       if (!prevOffline) {
         //don't override any previosly set temporarily offline causes (set by humans possibly)
-      	computer.setTemporarilyOffline(true, new hudson.slaves.OfflineCause.ByCLI("disk cleanup from job ${build.displayName}"))
+      	computer.setTemporarilyOffline(true, new hudson.slaves.OfflineCause.ByCLI("disk cleanup from job "))
       }
       if (computer.isIdle()) {
         //It's idle so delete everything under workspace
