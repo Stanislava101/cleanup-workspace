@@ -38,7 +38,7 @@ for (job in Jenkins.instance.items)
                     {
                       println it.path
                       File[] subFiles = new File(it.path).listFiles()
-                      files.each{
+                      subFiles.each{
                         println it2.name
                       }
                         if(count < MAX_BUILDS)
