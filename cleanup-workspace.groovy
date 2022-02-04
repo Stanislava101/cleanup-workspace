@@ -32,9 +32,13 @@ for (item in Hudson.instance.items)
           if (workspacePath.exists())
           {
             println workspacePath
-            File[] files = new File(workspacePath).listFiles()
+            String w = workspacePath
+            File[] files = new File(w).listFiles()
             files.each{
               println it.name
+            }
+            for(f in files){
+              println f
             }
            // workspacePath.deleteRecursive()
             println("    Deleted from location " + pathAsString)
