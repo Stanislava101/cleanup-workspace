@@ -47,7 +47,7 @@ for (job in Jenkins.instance.items)
                       if(!it.isFile()){
                         if(count < MAX_BUILDS){
                           def millis1 = System.currentTimeMillis()
-                          def millis2 = date.parse(f.lastModified()).getTime()
+                          def millis2 = f.lastModified()
                           long diff = millis1 - millis2
                           long diffDays = diff / (24* 60*60*1000)
                           println diffDays
