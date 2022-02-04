@@ -175,12 +175,6 @@ for (job in Jenkins.instance.items)
                    println "Dirs2 " + dl
                  }
                  
-                  files.traverse(type: DIRECTORIES, maxDepth: 0){
-                   list.add(it)
-                 }
-                 for(l in list){
-                   println l
-                 }
 
 
                  files.each{
