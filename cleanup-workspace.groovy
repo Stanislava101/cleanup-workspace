@@ -1,4 +1,6 @@
 import hudson.model.*
+
+#!/bin/bash
 // For each job
 for (item in Hudson.instance.items)
 {
