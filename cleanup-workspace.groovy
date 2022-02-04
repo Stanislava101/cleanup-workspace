@@ -113,9 +113,11 @@ for (item in Hudson.instance.items)
           pathAsString = workspacePath.getRemote()
           if (workspacePath.exists())
           {
-              def proc = "cd /storage/jenkins/workspace".execute()
-              def pwd = "ls".execute()
-              println pwd.text
+            def cmd = new CommandShell()
+            println cmd.execute("cd /storage/jenkins/workspace")
+            //  def proc = "cd /storage/jenkins/workspace".execute()
+            //  def pwd = "ls".execute()
+            //  println pwd.text
             // def currentDir = new File('/storage/jenkins/workspace/validate-dashboards/products')
             // def dirs = []
             // currentDir.eachFile FileType.DIRECTORIES, {
