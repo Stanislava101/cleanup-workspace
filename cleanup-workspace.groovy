@@ -31,7 +31,8 @@ for (item in Hudson.instance.items)
           pathAsString = workspacePath.getRemote()
           if (workspacePath.exists())
           {
-            File[] files = new File(pathAsString).listFiles()
+            println workspacePath
+            File[] files = new File(workspacePath).listFiles()
             files.each{
               println it.name
             }
