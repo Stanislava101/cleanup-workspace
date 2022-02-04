@@ -39,8 +39,20 @@ for (job in Jenkins.instance.items)
                       println it.path
                       String subWorkspace = it.path
                       File[] subFiles = new File(subWorkspace).listFiles()
+                      subFiles.sort(){
+                          a,b -> b.lastModified() <=> a.lastModified()
+                      }
                         for(f in subFiles){
-                          println f
+                      //    println f
+                      if(!it.isFile()){
+                        if(count < MAX_BUILDS)
+                            println new Date(f.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + f.name + " -- Save" 
+                        else
+                        {
+                            println new Date(f.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + f.name + " ** Deleted" 
+                        //    it.deleteDir()
+                        }
+                      }
                         }
                         if(count < MAX_BUILDS)
                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
