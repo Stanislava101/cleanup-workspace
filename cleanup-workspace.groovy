@@ -6,7 +6,7 @@ import hudson.slaves.OfflineCause;
 import hudson.node_monitors.*;
 
 //threshold is in GB and comes from a job parameter
-//def threshold = Integer.parseInt(build.buildVariableResolver.resolve("CLEAN_THRESHOLD"))
+def threshold = 6
 def skippedLabels = [ 'container' ] //don't clean docker slaves
 def extraDirectoriesToDelete = [ 'temp' ] //additional paths under slave's root path that should be removed if found
 
