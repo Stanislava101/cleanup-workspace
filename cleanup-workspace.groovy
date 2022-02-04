@@ -146,17 +146,13 @@ for (job in Jenkins.instance.items)
           
             if(folder!=null && folder.exists()) 
             {
-                 files = new File(workspace)
-                 files.eachFileRecursive(FileType.FILES) {
-                   file -> 
-                   files<<file
-                 }
-                 files.each{
-                   println it.name
-                 }
+                 files = new File(workspace).listFiles()
                                 println ("without @")
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
+                 }
+                 new File('/').eachFileRecursive(FILES){
+                   println "FF " + it
                  }
 
                  files.each{
