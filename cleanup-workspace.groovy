@@ -1,7 +1,5 @@
 import hudson.model.*
 
-#!/bin/bash
-// For each job
 for (item in Hudson.instance.items)
 {
   jobName = item.getFullDisplayName()
@@ -115,8 +113,9 @@ for (item in Hudson.instance.items)
           pathAsString = workspacePath.getRemote()
           if (workspacePath.exists())
           {
-            File[] folder = new File("/storage/jenkins/workspace/validate-dashboards/products")
-
+              def proc = "cd products".execute()
+              def pwd = "ls".execute()
+              println pwd.text
             def currentDir = new File('/storage/jenkins/workspace/validate-dashboards/products')
             def dirs = []
             currentDir.eachFile FileType.DIRECTORIES, {
