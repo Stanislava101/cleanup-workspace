@@ -96,7 +96,7 @@ for (item in Hudson.instance.items)
         }
       }
     }
-        if (jobName == "validate-build-bom")
+        if (jobName == "validate-concourse-pipeline")
     {
       println("Wiping out workspaces of job " + jobName)
       
