@@ -5,7 +5,7 @@ import hudson.model.*
 
 
 //Get value from String Parameter
-MAX_BUILDS = 5
+MAX_BUILDS = 2
 
 for (job in Jenkins.instance.items) 
 {
