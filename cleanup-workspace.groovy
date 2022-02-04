@@ -46,14 +46,11 @@ for (job in Jenkins.instance.items)
                       //    println f
                       if(!it.isFile()){
                         if(count < MAX_BUILDS){
-                          GregorianCalendar cal1 = new GregorianCalendar(f.lastModified())
-                          GregorianCalendar cal2 = new GregorianCalendar(2022,2,4)
-                          long ms1 = cal1.getTime().getTime()
-                          long ms2 = cal2.getTime().getTime()
-                          long difMs = ms2-ms1
-                          long msPerDay = 1000*60*60*24
-                          double days = difMs/msPerDay
-                          
+                          def millis1 = System.currentTimeMillis()
+                          def millis2 = date.parse(f.lastModified()).getTime()
+                          Days days = Days.daysBetween(new DateTime(millis1), new DateTime(millis2))
+                          int daysBetweenDates = days.getDays()                          
+                            println daysBetweenDates
                             println new Date(f.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + f.name + " -- Save" 
                         }
                         else
