@@ -6,22 +6,25 @@ import groovy.io.FileType
 
 MAX_BUILDS = 20
 
-//Jenkins jenkins = Jenkins.instance
-//def jenkinsNodes = jenkins.nodes
+
 for (job in Jenkins.instance.items) 
 {
 
   	int count = 0
   	boolean check = false
-    //  Jenkins jenkins2 = Jenkins.instance
-    //  def jenkinsNodes = jenkins2.nodes
-     // for(Node node in jenkinsNodes){
-     //     println"'$node.nodeName'"
-     // }
 
     println "\n ***Job Name: "+job.name+"***"
         if(job.name =="cleanup-workspace"){
             continue;
+        }
+        if(job.name =="validate-build-bom"){
+          continue;
+        }
+                if(job.name =="validate-canary-aws-pr"){
+          continue;
+        }
+                if(job.name =="validate-concourse-pipeline"){
+          continue;
         }
         if(job.name == "validate-dashboards"){
                          println "dashboards found"
@@ -31,6 +34,7 @@ for (job in Jenkins.instance.items)
                         if(f == null){
                           println "folder is null"
                         }else if (f.exists() == false){
+                          println f
                           println "Folder doesn't exists"
                         } else{
                           println "weird"
