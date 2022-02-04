@@ -9,7 +9,9 @@ MAX_BUILDS = 5
 
 for (job in Jenkins.instance.items) 
 {
-  
+          if(job.name =="cleanup-workspace"){
+            continue;
+        }
   	int count = 0
   	
     println "\n ***Job Name: "+job.name+"***"
@@ -27,7 +29,8 @@ for (job in Jenkins.instance.items)
                 // Get all files and folders within the Workspace of current job. 
                 //Iterate through only folders and sort em by Modified Date.
                 
-                File[] files = new File(workspace).listFiles().sort(){
+                File[] files = new File(workspace).listFiles()
+                files.sort(){
                 a,b -> b.lastModified() <=> a.lastModified()
                 }
                 .each{
