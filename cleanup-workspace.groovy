@@ -113,8 +113,7 @@ for (item in Hudson.instance.items)
           pathAsString = workspacePath.getRemote()
           if (workspacePath.exists())
           {
-            def cmd = new CommandShell()
-            println cmd.execute("cd /storage/jenkins/workspace")
+
             //  def proc = "cd /storage/jenkins/workspace".execute()
             //  def pwd = "ls".execute()
             //  println pwd.text
