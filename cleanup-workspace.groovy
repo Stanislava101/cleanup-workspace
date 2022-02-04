@@ -48,9 +48,9 @@ for (job in Jenkins.instance.items)
                         if(count < MAX_BUILDS){
                           def millis1 = System.currentTimeMillis()
                           def millis2 = date.parse(f.lastModified()).getTime()
-                          Days days = Days.daysBetween(new DateTime(millis1), new DateTime(millis2))
-                          int daysBetweenDates = days.getDays()                          
-                            println daysBetweenDates
+                          long diff = millis1 - millis2
+                          long diffDays = diff / (24* 60*60*1000)
+                          println diffDays
                             println new Date(f.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + f.name + " -- Save" 
                         }
                         else
