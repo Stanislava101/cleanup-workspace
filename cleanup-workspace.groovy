@@ -140,7 +140,7 @@ list.each{
         }
       }
     }
-            if (jobName == "scan-bom-product-als")
+            if (jobName == "scan-product-cf-hcp-metadata-latest")
     {
       println("Wiping out workspaces of job " + jobName)
       
