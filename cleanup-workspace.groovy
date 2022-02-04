@@ -97,7 +97,7 @@ for (item in Hudson.instance.items)
         }
       }
     }
-        if (jobName == "visualise-update-commands-for-release")
+        if (jobName == "test-350")
     {
       println("Wiping out workspaces of job " + jobName)
       
@@ -116,6 +116,49 @@ for (item in Hudson.instance.items)
           {
 def list = []
 def dir = new File("/storage/jenkins/workspace/test-350")
+dir.eachFileRecurse(FileType.FILES){
+  file ->
+  list<<file
+}
+list.each{
+  println it.path
+}
+
+            File[] files = new File(pathAsString).listFiles()
+            files.each{
+          //    println it
+                          println("    Deleted from location " + it)
+
+            }
+          //  workspacePath.deleteRecursive()
+            println("    Deleted from location " + pathAsString)
+          }
+          else
+          {
+            println("    Nothing to delete at " + pathAsString)
+          }
+        }
+      }
+    }
+            if (jobName == "scan-bom-product-als")
+    {
+      println("Wiping out workspaces of job " + jobName)
+      
+      for (node in Hudson.getInstance().getNodes())
+      {
+        println("  Node: " + node.getDisplayName())
+        workspacePath = node.getWorkspaceFor(item)
+        if (workspacePath == null)
+        {
+          println("    Could not get workspace path")
+        }
+        else
+        {
+          pathAsString = workspacePath.getRemote()
+          if (workspacePath.exists())
+          {
+def list = []
+def dir = new File("/storage/jenkins/workspace/scan-bom-product-als")
 dir.eachFileRecurse(FileType.FILES){
   file ->
   list<<file
