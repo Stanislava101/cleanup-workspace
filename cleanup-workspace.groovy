@@ -36,6 +36,11 @@ for (job in Jenkins.instance.items)
                 files.each{
                     if(!it.isFile()) //Check only for folders
                     {
+                      println it.path
+                      File[] subFiles = new File(it.path).listFiles()
+                      files.each{
+                        println it2.name
+                      }
                         if(count < MAX_BUILDS)
                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
                         else
