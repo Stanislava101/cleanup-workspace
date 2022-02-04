@@ -39,9 +39,9 @@ for (job in Jenkins.instance.items)
                       println it.path
                       String subWorkspace = it.path
                       File[] subFiles = new File(subWorkspace).listFiles()
-                       subFiles.each{
-                         println it2.name
-                         }
+                        for(f in subFiles){
+                          println f
+                        }
                         if(count < MAX_BUILDS)
                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
                         else
