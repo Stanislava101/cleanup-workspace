@@ -37,14 +37,25 @@ def performCleanup(def node, def items) {
     
     pathAsString = workspacePath.getRemote()
     if (workspacePath.exists()) {
-      String w = workspacePath
+            String w = workspacePath
+
+      File folder = new File(w)
+      if(folder == null){
+        println "folder is null"
+        println folder
+      }else if(folder.exists() == false){
+        println "folder doesn't exist"
+        println folder
+      }else{
       File[] files = new File(w).listFiles()
       files.each{
         println it.name
       }
+  
 
      // workspacePath.deleteRecursive()
       println(".... deleted from location " + pathAsString)
+      }
     } else {
       println(".... nothing to delete at " + pathAsString)
     }
