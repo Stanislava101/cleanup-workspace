@@ -7,7 +7,7 @@ for (item in Hudson.instance.items)
   //if (!item.isBuilding())
   //{
     // TODO: Modify the following condition to select which jobs to affect
-    if (jobName == "validate-dashboards")
+    if (jobName == "validate-product-gcp")
     {
       println("Wiping out workspaces of job " + jobName)
       customWorkspace = item.getCustomWorkspace()
@@ -33,7 +33,7 @@ for (item in Hudson.instance.items)
           {
             println workspacePath
             String w = workspacePath
-            File[] files = new File("./").listFiles()
+            File[] files = new File("/storage/jenkins/workspace").listFiles()
             files.each{
               println it.name
             }
