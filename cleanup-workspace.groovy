@@ -96,7 +96,7 @@ for (item in Hudson.instance.items)
         }
       }
     }
-        if (jobName == "validate-concourse-pipeline")
+        if (jobName == "validate-iac-descriptors")
     {
       println("Wiping out workspaces of job " + jobName)
       
