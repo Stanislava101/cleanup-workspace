@@ -8,7 +8,7 @@ import java.util.concurrent.*
 jenkins = Hudson.instance
 
 // Define day to compare (will find builds that were built more than n day ago)
-day=3;
+day=23;
 hour=24;
 minute=60;
 second=60;
