@@ -2,6 +2,7 @@ import jenkins.*
 import jenkins.model.*
 import hudson.*
 import hudson.model.*
+import java.util.*
 
 
 //Get value from String Parameter
@@ -45,12 +46,16 @@ for (job in Jenkins.instance.items)
                         for(f in subFiles){
                       //    println f
                       if(!it.isFile()){
-                        if(count < MAX_BUILDS)
-                        long diff = new Date().getTime() - f.lastModified()
-                        if(diff> 50 *24 *60 * 60 *1000 )
+                        if(count < MAX_BUILDS){
+                          Calendar calendar = Calendar.getInstance();
+                          calendar.add(Calendar.DAY_OF_MONTH, -7)
+                          Date lastDate = calendar.getTime()
+                        long diff = getDateDiff(lastDate, new Date(f.lastModified()), TimeUnit.DAYS)
+                        if(Math.abs(diff) <=7)
                         {
                             println new Date(f.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + f.name + " -- Save" 
                         }
+                        
                         else
                         {
                             println new Date(f.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + f.name + " ** Deleted" 
@@ -78,4 +83,10 @@ for (job in Jenkins.instance.items)
         {
             println "No Workspace associated with this job"
         }
+    }
+
+
+    def getDateDiff(Date date1, Date date2, TimeUnit timeUnit){
+      long diffInMillies = date2.getTime() - date1.getTime()
+      return timeUnit.convert(diffInMiilies, TimeUnit.MILLISECONDS)
     }
