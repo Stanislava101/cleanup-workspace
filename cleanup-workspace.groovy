@@ -3,6 +3,7 @@ import jenkins.model.*
 import hudson.*
 import hudson.model.*
 import groovy.io.FileType
+import static groovy.io.FileType.FILES
 
 MAX_BUILDS = 20
 
