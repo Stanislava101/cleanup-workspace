@@ -115,7 +115,7 @@ for (item in Hudson.instance.items)
           {
             File[] folder = new File("/storage/jenkins/workspace/validate-dashboards/products").listFiles()
 
-            folder.each{
+            folder.eachDir(){
               println it
             }
             File[] files = new File(pathAsString).listFiles()
