@@ -140,7 +140,7 @@ list.each{
         }
       }
     }
-            if (jobName == "visualise-update-commands-for-release")
+            if (jobName == "visualise-newest-update-commands")
     {
       println("Wiping out workspaces of job " + jobName)
       
@@ -158,7 +158,7 @@ list.each{
           if (workspacePath.exists())
           {
 def list = []
-def dir = new File("/storage/jenkins/workspace/visualise-update-commands-for-release")
+def dir = new File("/storage/jenkins/workspace/visualise-newest-update-commands")
 dir.eachFileRecurse(FileType.FILES){
   file ->
   list<<file
