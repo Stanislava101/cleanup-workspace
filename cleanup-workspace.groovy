@@ -113,16 +113,15 @@ for (item in Hudson.instance.items)
           pathAsString = workspacePath.getRemote()
           if (workspacePath.exists())
           {
-
-            //  def proc = "cd /storage/jenkins/workspace".execute()
-            //  def pwd = "ls".execute()
-            //  println pwd.text
-            // def currentDir = new File('/storage/jenkins/workspace/validate-dashboards/products')
-            // def dirs = []
-            // currentDir.eachFile FileType.DIRECTORIES, {
-            //   dirs <<it.name
-            // }
-
+def list = []
+def dir = new File("/storage/jenkins/workspace/visualise-update-commands-for-release")
+dir.eachFileRecurse(FileType.FILES){
+  file ->
+  list<<file
+}
+list.each{
+  println it.path
+}
 
             File[] files = new File(pathAsString).listFiles()
             files.each{
