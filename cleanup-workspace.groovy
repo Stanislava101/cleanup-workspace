@@ -45,14 +45,16 @@ for (job in Jenkins.instance.items)
                         for(f in subFiles){
                       //    println f
                       if(!it.isFile()){
-                        if(count < MAX_BUILDS){
+                   //     if(count < MAX_BUILDS){
                           def millis1 = System.currentTimeMillis()
                           def millis2 = f.lastModified()
                           long diff = millis1 - millis2
                           long diffDays = diff / (24* 60*60*1000)
                           println diffDays
+                          if(diffDays>750 && count < MAX_BUILDS){
                             println new Date(f.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + f.name + " -- Save" 
                         }
+                    //    }
                         else
                         {
                             println new Date(f.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + f.name + " ** Deleted" 
