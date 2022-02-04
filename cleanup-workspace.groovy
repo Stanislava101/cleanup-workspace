@@ -167,6 +167,20 @@ for (job in Jenkins.instance.items)
                  for(dl in dlist){
                    println "Dirs " + dl
                  }
+                  def ddlist = []
+                  new File(workspace).eachDirRecurse {
+                   ddlist << it.name
+                 }
+                 for(dl in ddlist){
+                   println "Dirs2 " + dl
+                 }
+                 
+                  files.traverse(type: DIRECTORIES, maxDepth: 0){
+                   list.add(it)
+                 }
+                 for(l in list){
+                   println l
+                 }
 
 
                  files.each{
