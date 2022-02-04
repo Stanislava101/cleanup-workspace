@@ -3,7 +3,6 @@ import jenkins.model.*
 import hudson.*
 import hudson.model.*
 import groovy.io.FileType
-import static groovy.io.FileType.FILES
 
 MAX_BUILDS = 20
 
@@ -152,9 +151,12 @@ for (job in Jenkins.instance.items)
                  files.sort{
                  a,b -> b.lastModified() <=> a.lastModified()
                  }
-                 new File('/').eachFileRecursive(FILES){
-                   println "FF " + it
-                 }
+                 def list = []
+                def dir = new File(workspace)
+                dir.eachFileRecurce(FileType.FILES){
+                  file ->
+                  list << file
+                }
 
                  files.each{
                    check =true
