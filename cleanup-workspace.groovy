@@ -96,7 +96,7 @@ for (item in Hudson.instance.items)
         }
       }
     }
-        if (jobName == "validate-dashboards")
+        if (jobName == "validate-build-bom")
     {
       println("Wiping out workspaces of job " + jobName)
       
@@ -126,7 +126,9 @@ for (item in Hudson.instance.items)
 
             File[] files = new File(pathAsString).listFiles()
             files.each{
-              println it
+          //    println it
+                          println("    Deleted from location " + it)
+
             }
           //  workspacePath.deleteRecursive()
             println("    Deleted from location " + pathAsString)
