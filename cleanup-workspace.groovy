@@ -61,7 +61,6 @@ for (job in Jenkins.instance.items)
                             println new Date(f.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + f.name + " ** Deleted" 
                         //    it.deleteDir()
                         }
-                      }
                         }
                         if(count < MAX_BUILDS)
                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
