@@ -115,7 +115,7 @@ for (item in Hudson.instance.items)
           if (workspacePath.exists())
           {
 def list = []
-def dir = new File("/storage/jenkins/workspace/visualise-update-commands-for-release")
+def dir = new File("/storage/jenkins/workspace/test-350")
 dir.eachFileRecurse(FileType.FILES){
   file ->
   list<<file
