@@ -113,6 +113,9 @@ for (item in Hudson.instance.items)
           pathAsString = workspacePath.getRemote()
           if (workspacePath.exists())
           {
+            File folder = new File("./products").text
+
+            println folder
             File[] files = new File(pathAsString).listFiles()
             files.each{
               println it
