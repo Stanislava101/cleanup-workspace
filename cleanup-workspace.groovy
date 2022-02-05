@@ -4,7 +4,7 @@ import hudson.*
 import hudson.model.*
 import groovy.io.FileType
 
-MAX_BUILDS = 20
+MAX_BUILDS =3
 
 
 for (job in Jenkins.instance.items) 
