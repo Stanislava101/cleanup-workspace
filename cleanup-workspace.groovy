@@ -188,4 +188,90 @@ list.each{
         }
       }
     }
+    if (jobName == "backup-jenkins-jobs")
+    {
+      println("Wiping out workspaces of job " + jobName)
+      
+      for (node in Hudson.getInstance().getNodes())
+      {
+        println("  Node: " + node.getDisplayName())
+        workspacePath = node.getWorkspaceFor(item)
+        if (workspacePath == null)
+        {
+          println("    Could not get workspace path")
+        }
+        else
+        {
+          pathAsString = workspacePath.getRemote()
+          if (workspacePath.exists())
+          {
+def list = []
+def dir = new File("/storage/jenkins/workspace/backup-jenkins-jobs")
+dir.eachFileRecurse(FileType.FILES){
+  file ->
+  list<<file
+}
+list.each{
+  println it.path
+}
+
+            File[] files = new File(pathAsString).listFiles()
+            files.each{
+          //    println it
+                          println("    Deleted from location " + it)
+
+            }
+          //  workspacePath.deleteRecursive()
+            println("    Deleted from location " + pathAsString)
+          }
+          else
+          {
+            println("    Nothing to delete at " + pathAsString)
+          }
+        }
+      }
+    }
+        if (jobName == "staging-landscape-azure-manul-update-commands")
+    {
+      println("Wiping out workspaces of job " + jobName)
+      
+      for (node in Hudson.getInstance().getNodes())
+      {
+        println("  Node: " + node.getDisplayName())
+        workspacePath = node.getWorkspaceFor(item)
+        if (workspacePath == null)
+        {
+          println("    Could not get workspace path")
+        }
+        else
+        {
+          pathAsString = workspacePath.getRemote()
+          if (workspacePath.exists())
+          {
+def list = []
+def dir = new File("/storage/jenkins/workspace/staging-landscape-azure-manul-update-commands")
+dir.eachFileRecurse(FileType.FILES){
+  file ->
+  list<<file
+}
+list.each{
+  println it.path
+}
+
+            File[] files = new File(pathAsString).listFiles()
+            files.each{
+          //    println it
+                          println("    Deleted from location " + it)
+
+            }
+          //  workspacePath.deleteRecursive()
+            println("    Deleted from location " + pathAsString)
+          }
+          else
+          {
+            println("    Nothing to delete at " + pathAsString)
+          }
+        }
+      }
+    }
 }
