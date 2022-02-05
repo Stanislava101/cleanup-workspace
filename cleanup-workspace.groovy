@@ -43,15 +43,24 @@ for (job in Jenkins.instance.items)
                           a,b -> b.lastModified() <=> a.lastModified()
                       }
                         for(f in subFiles){
+
                       //    println f
                       if(!it.isFile()){
+                      String subSubWorkspace = it.path
+                      File[] subSubFiles = new File(subSubWorkspace).listFiles()
+                        subSubFiles.sort(){
+                          a,b -> b.lastModified() <=> a.lastModified()
+                      }
+                      for(sf in subSubFiles){
+                          println "Sub sub file " + sf.name
+                      }
                    //     if(count < MAX_BUILDS){
                           def millis1 = System.currentTimeMillis()
                           def millis2 = f.lastModified()
                           long diff = millis1 - millis2
                           long diffDays = diff / (24* 60*60*1000)
                           println diffDays
-                          if(diffDays<365 && count < MAX_BUILDS){
+                          if(diffDays<365){
                             println new Date(f.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + f.name + " -- Save" 
                         }
                     //    }
@@ -62,7 +71,7 @@ for (job in Jenkins.instance.items)
                         }
                       }
                         }
-                        if(count < MAX_BUILDS)
+                        if(diffDays<365)
                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
                         else
                         {
