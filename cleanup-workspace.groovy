@@ -1,277 +1,197 @@
+import jenkins.*
+import jenkins.model.*
+import hudson.*
 import hudson.model.*
 import groovy.io.FileType
 
-for (item in Hudson.instance.items)
+MAX_BUILDS = 20
+
+
+for (job in Jenkins.instance.items) 
 {
-  jobName = item.getFullDisplayName()
-    if (jobName == "clean_jenkins_machines")
-    {
-      println("Wiping out workspaces of job " + jobName)
-      
-      for (node in Hudson.getInstance().getNodes())
-      {
-        println("  Node: " + node.getDisplayName())
-        workspacePath = node.getWorkspaceFor(item)
-        if (workspacePath == null)
+
+  	int count = 0
+  	boolean check = false
+
+    println "\n ***Job Name: "+job.name+"***"
+        if(job.name =="cleanup-workspace"){
+            continue;
+        }
+        if(job.name =="validate-build-bom"){
+          continue;
+        }
+                if(job.name =="validate-canary-aws-pr"){
+          continue;
+        }
+                if(job.name =="validate-concourse-pipeline"){
+          continue;
+        }
+        if(job.name == "validate-dashboards"){
+                         println "dashboards found"
+                         String w = job.workspace
+                      //   File files = new File(w).listFiles()
+                        File f = new File("/storage/jenkins/workspace/validate-dashboards/products")
+                        if(f == null){
+                          println "folder is null"
+                        }else if (f.exists() == false){
+                          println f
+                          println "Folder doesn't exists"
+                        } else{
+                          println "weird"
+                          File theF = new File("/storage/jenkins/workspace/validate-dashboards/products").listFiles()
+                          theF.each{
+                            println it.name + " ---S"
+                          }
+                        }
+                     }
+
+        if(job.workspace!=null && job.workspace!="")  //Check if there is a workspace associated with the Job
         {
-          println("    Could not get workspace path")
+
+        String workspace = job.workspace
+
+            println "Workspace path : " + job.workspace
+
+            File folder = new File(workspace) 
+            println folder
+              File[] files
+             String folderString = folder.getName()
+             int folderLength = folderString.length()
+            int removeSymbol = folderLength -2
+                            println folderString.charAt(removeSymbol)
+                            println folder.getName()
+            if(workspace == "/storage/jenkins/workspace/validate-dashboards"){
+                         println "dashboards found"
+                       //  files = new File("/storage/jenkins/workspace/validate-product-aws3/39326").listFiles()
+                      //  files = new File("/storage/jenkins/workspace/validate-product-aws3/39344").listFiles()
+                        File f = new File("/storage/jenkins/workspace/validate-product-aws3/39340")
+                        if(f.isFile() == true){
+                          println "True"
+                        } else if (f.isDirectory() == true){
+                          println "False"
+                        }
+                         files.each{
+                           println it.name
+                         }
+                           files.each{
+                           println it
+                         }
+
+                     }
+
+                
+                if(folder.getName().charAt(removeSymbol) == '@'){
+                    println "remove @"
+                    int length = folder.getName().length()
+                    int nameLength = length - 2
+                     workspace = "/storage/jenkins/workspace/"+folder.getName().substring(0,nameLength)
+                     println "The workspace is "
+                     println workspace
+                     if(workspace == "/storage/jenkins/workspace/validate-product-aws3"){
+                         println "aws3 found"
+                       //  files = new File("/storage/jenkins/workspace/validate-product-aws3/39326").listFiles()
+                      //  files = new File("/storage/jenkins/workspace/validate-product-aws3/39344").listFiles()
+                        File f = new File("/storage/jenkins/workspace/validate-product-aws3/39340")
+                        if(f.isFile() == true){
+                          println "True"
+                        } else if (f.isDirectory() == true){
+                          println "False"
+                        }
+                         files.each{
+                           println it.name
+                         }
+                           files.each{
+                           println it
+                         }
+
+                     }
+                   //  files = new File(workspace).listFiles()
+                     println "${workspace} ${workspace.size()}"
+                     for(file in files){
+                         println "file is " + file
+                     }
+
+                     println "with @"
+                long workspaceLength2 = job.workspace.length()
+                long fileSizeInKB = workspaceLength2/1024
+                println fileSizeInKB 
+                         
+
+                //                       files.sort{
+                //  a,b -> b.lastModified() <=> a.lastModified()
+                //  }
+                files.each{
+                    println "Path is " + it
+                }
+
+
+                 files.each{
+                   check =true
+                        if(!it.isFile())         //isDirectory, it.isFile()
+                     {      
+                         if(count < MAX_BUILDS){
+                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
+                         }
+                         else
+                         {
+                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
+                            
+                         }
+                         count++
+                     }
+                     
+                 
+                 }
+             }
+          
+            if(folder!=null && folder.exists()) 
+            {
+                 files = new File(workspace).listFiles()
+                                println ("without @")
+                 files.sort{
+                 a,b -> b.lastModified() <=> a.lastModified()
+                 }
+
+                 files.each{
+                   check =true
+                        if(!it.isFile())         //isDirectory, it.isFile()
+                     {      String sub = it.path
+                            File[] sub = new File(sub).listFiles()
+                            for(s in sub){
+                                println "Sub dir is " + s
+                            }
+
+                         if(count < MAX_BUILDS){
+                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
+                         }
+                         else
+                         {
+                             println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " ** Deleted" 
+                            
+                         }
+                         count++
+                     }
+                     
+                 
+                 }
+             
+          /*  if(check == true){
+                         println "Item found"
+                     }
+            */
+            if(check == false){
+                println "Workspace is empty or doesn't exist"
+            }
+             }
+            
+            else
+            {
+                println "Workspace is empty or doesn't exist"
+            }
         }
         else
         {
-          pathAsString = workspacePath.getRemote()
-          if (workspacePath.exists())
-          {
-            File[] files = new File(pathAsString).listFiles()
-            files.each{
-              println it
-              String path = it.path
-              File[] sub = new File(path).listFiles()
-              for(l in sub){
-                  println "Sub is " + l
-              }
-            }
-          //  workspacePath.deleteRecursive()
-            println("    Deleted from location " + pathAsString)
-          }
-          else
-          {
-            println("    Nothing to delete at " + pathAsString)
-          }
+            println "No Workspace associated with this job"
         }
-      }
     }
-        if (jobName == "seed-takts")
-    {
-      println("Wiping out workspaces of job " + jobName)
-      
-      for (node in Hudson.getInstance().getNodes())
-      {
-        println("  Node: " + node.getDisplayName())
-        workspacePath = node.getWorkspaceFor(item)
-        if (workspacePath == null)
-        {
-          println("    Could not get workspace path")
-        }
-        else
-        {
-          pathAsString = workspacePath.getRemote()
-          if (workspacePath.exists())
-          {
-            File[] files = new File(pathAsString).listFiles()
-            files.each{
-              println it
-            }
-          //  workspacePath.deleteRecursive()
-            println("    Deleted from location " + pathAsString)
-          }
-          else
-          {
-            println("    Nothing to delete at " + pathAsString)
-          }
-        }
-      }
-    }
-        if (jobName == "build-product-buildpacks")
-    {
-      println("Wiping out workspaces of job " + jobName)
-      
-      for (node in Hudson.getInstance().getNodes())
-      {
-        println("  Node: " + node.getDisplayName())
-        workspacePath = node.getWorkspaceFor(item)
-        if (workspacePath == null)
-        {
-          println("    Could not get workspace path")
-        }
-        else
-        {
-          pathAsString = workspacePath.getRemote()
-          if (workspacePath.exists())
-          {
-            File[] files = new File(pathAsString).listFiles()
-            files.each{
-              println it
-            }
-          //  workspacePath.deleteRecursive()
-            println("    Deleted from location " + pathAsString)
-          }
-          else
-          {
-            println("    Nothing to delete at " + pathAsString)
-          }
-        }
-      }
-    }
-        if (jobName == "test-350")
-    {
-      println("Wiping out workspaces of job " + jobName)
-      
-      for (node in Hudson.getInstance().getNodes())
-      {
-        println("  Node: " + node.getDisplayName())
-        workspacePath = node.getWorkspaceFor(item)
-        if (workspacePath == null)
-        {
-          println("    Could not get workspace path")
-        }
-        else
-        {
-          pathAsString = workspacePath.getRemote()
-          if (workspacePath.exists())
-          {
-def list = []
-def dir = new File("/storage/jenkins/workspace/test-350")
-dir.eachFileRecurse(FileType.FILES){
-  file ->
-  list<<file
-}
-list.each{
-  println it.path
-}
 
-            File[] files = new File(pathAsString).listFiles()
-            files.each{
-          //    println it
-                          println("    Deleted from location " + it)
-
-            }
-          //  workspacePath.deleteRecursive()
-            println("    Deleted from location " + pathAsString)
-          }
-          else
-          {
-            println("    Nothing to delete at " + pathAsString)
-          }
-        }
-      }
-    }
-    if (jobName == "visualise-newest-update-commands")
-    {
-      println("Wiping out workspaces of job " + jobName)
-      
-      for (node in Hudson.getInstance().getNodes())
-      {
-        println("  Node: " + node.getDisplayName())
-        workspacePath = node.getWorkspaceFor(item)
-        if (workspacePath == null)
-        {
-          println("    Could not get workspace path")
-        }
-        else
-        {
-          pathAsString = workspacePath.getRemote()
-          if (workspacePath.exists())
-          {
-def list = []
-def dir = new File("/storage/jenkins/workspace/visualise-newestupdate-commands")
-dir.eachFileRecurse(FileType.FILES){
-  file ->
-  list<<file
-}
-list.each{
-  println it.path
-}
-
-            File[] files = new File(pathAsString).listFiles()
-            files.each{
-          //    println it
-                          println("    Deleted from location " + it)
-
-            }
-          //  workspacePath.deleteRecursive()
-            println("    Deleted from location " + pathAsString)
-          }
-          else
-          {
-            println("    Nothing to delete at " + pathAsString)
-          }
-        }
-      }
-    }
-    if (jobName == "backup-jenkins-jobs")
-    {
-      println("Wiping out workspaces of job " + jobName)
-      
-      for (node in Hudson.getInstance().getNodes())
-      {
-        println("  Node: " + node.getDisplayName())
-        workspacePath = node.getWorkspaceFor(item)
-        if (workspacePath == null)
-        {
-          println("    Could not get workspace path")
-        }
-        else
-        {
-          pathAsString = workspacePath.getRemote()
-          if (workspacePath.exists())
-          {
-def list = []
-def dir = new File("/storage/jenkins/workspace/backup-jenkins-jobs")
-dir.eachFileRecurse(FileType.FILES){
-  file ->
-  list<<file
-}
-list.each{
-  println it.path
-}
-
-            File[] files = new File(pathAsString).listFiles()
-            files.each{
-          //    println it
-                          println("    Deleted from location " + it)
-
-            }
-          //  workspacePath.deleteRecursive()
-            println("    Deleted from location " + pathAsString)
-          }
-          else
-          {
-            println("    Nothing to delete at " + pathAsString)
-          }
-        }
-      }
-    }
-        if (jobName == "staging-landscape-azure-manul-update-commands")
-    {
-      println("Wiping out workspaces of job " + jobName)
-      
-      for (node in Hudson.getInstance().getNodes())
-      {
-        println("  Node: " + node.getDisplayName())
-        workspacePath = node.getWorkspaceFor(item)
-        if (workspacePath == null)
-        {
-          println("    Could not get workspace path")
-        }
-        else
-        {
-          pathAsString = workspacePath.getRemote()
-          if (workspacePath.exists())
-          {
-def list = []
-def dir = new File("/storage/jenkins/workspace/staging-landscape-azure-manul-update-commands")
-dir.eachFileRecurse(FileType.FILES){
-  file ->
-  list<<file
-}
-list.each{
-  println it.path
-}
-
-            File[] files = new File(pathAsString).listFiles()
-            files.each{
-          //    println it
-                          println("    Deleted from location " + it)
-
-            }
-          //  workspacePath.deleteRecursive()
-            println("    Deleted from location " + pathAsString)
-          }
-          else
-          {
-            println("    Nothing to delete at " + pathAsString)
-          }
-        }
-      }
-    }
-}
