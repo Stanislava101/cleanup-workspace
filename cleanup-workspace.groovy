@@ -149,7 +149,8 @@ for (job in Jenkins.instance.items)
                  files = new File(workspace).listFiles()
                                 println ("without @")
                  files.sort{
-                 a,b -> b.lastModified() <=> a.lastModified()
+                 //a,b -> b.lastModified() <=> a.lastModified()
+                 a,b -> b.lastModified().compareTo(a.lastModified())
                  }
 
                  files.each{
