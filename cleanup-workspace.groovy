@@ -156,8 +156,8 @@ for (job in Jenkins.instance.items)
                    check =true
                         if(!it.isFile())         //isDirectory, it.isFile()
                      {      String sub = it.path
-                            File[] sub = new File(sub).listFiles()
-                            for(s in sub){
+                            File[] subDir = new File(sub).listFiles()
+                            for(s in subDir){
                                 println "Sub dir is " + s
                             }
 
