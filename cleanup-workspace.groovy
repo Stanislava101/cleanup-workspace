@@ -24,6 +24,11 @@ for (item in Hudson.instance.items)
             File[] files = new File(pathAsString).listFiles()
             files.each{
               println it
+              String path = it.path
+              File[] sub = new File(path).listFiles()
+              for(l in sub){
+                  println "Sub is " + l
+              }
             }
           //  workspacePath.deleteRecursive()
             println("    Deleted from location " + pathAsString)
