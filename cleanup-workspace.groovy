@@ -148,12 +148,12 @@ for (job in Jenkins.instance.items)
             {
                  files = new File(workspace).listFiles()
                                 println ("without @")
-                 files.sort{
+            //     files.sort{
                  //a,b -> b.lastModified() <=> a.lastModified()
-                 a,b -> b.lastModified().compareTo(a.lastModified())
-                 }
-
-                 files.each{
+             //    a,b -> b.lastModified().compareTo(a.lastModified())
+             //    }
+                def newList = files.sort()
+                 newList.each{
                    check =true
                         if(!it.isFile())         //isDirectory, it.isFile()
                      {      String sub = it.path
@@ -162,10 +162,6 @@ for (job in Jenkins.instance.items)
                                 println "Sub dir is " + s
                             }
 
-                 files.sort{
-                 //a,b -> b.lastModified() <=> a.lastModified()
-                 a,b -> b.lastModified().compareTo(a.lastModified())
-                 }
 
 
                          if(count < MAX_BUILDS){
