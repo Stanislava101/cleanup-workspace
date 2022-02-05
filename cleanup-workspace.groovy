@@ -162,6 +162,12 @@ for (job in Jenkins.instance.items)
                                 println "Sub dir is " + s
                             }
 
+                 files.sort{
+                 //a,b -> b.lastModified() <=> a.lastModified()
+                 a,b -> b.lastModified().compareTo(a.lastModified())
+                 }
+
+
                          if(count < MAX_BUILDS){
                              println new Date(it.lastModified()).format('MM/dd/yyyy hh:mm:ss a') + " /" + it.name + " -- Save" 
                          }
